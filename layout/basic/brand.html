@@ -1,0 +1,507 @@
+<!--@layout(/layout/basic/layout.html)-->
+<div class="needyou-brand">
+<style>
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/variable/pretendardvariable.css');
+@import url('https://cdn.jsdelivr.net/gh/sunn-us/SUIT/fonts/variable/woff2/SUIT-Variable.css');
+
+:root {
+  --blue: #0a3b52;
+  --yellow: #f9b100;
+  --gray: #666;
+  --max-width: 1200px;
+}
+
+/* ================== GLOBAL ================== */
+.needyou-brand * { box-sizing: border-box; }
+.needyou-brand {
+  font-family: "Pretendard Variable", "SUIT Variable", sans-serif;
+  color: var(--blue);
+  background: #fff;
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+/* ================== HERO ================== */
+.needyou-brand .brand {
+  color: #fff;
+  background: linear-gradient(180deg, #0a3b52 0%, #0d4f6b 100%);
+  height: 600px; /* ← 고정 높이 */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  overflow: hidden;
+}
+.needyou-brand .brand h2 {
+  font-size: 3rem;
+  font-weight: 800;
+  margin-bottom: 14px;
+  color: #fff;
+  text-shadow: 2px 2px 6px rgba(0,0,0,0.25);
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateY(24px);
+  animation: fadeUp 0.9s ease-out 0.1s forwards;
+}
+.needyou-brand .brand h3 {
+  font-size: 1.3rem;
+  color: var(--yellow);
+  font-weight: 700;
+  margin-bottom: 18px;
+  opacity: 0;
+  transform: translateY(24px);
+  animation: fadeUp 0.9s ease-out 0.28s forwards;
+}
+.needyou-brand .brand p {
+  color: rgba(255,255,255,0.92);
+  font-size: 1.1rem;
+  line-height: 1.8;
+  max-width: 640px;
+  margin: 0 auto;
+  opacity: 0;
+  transform: translateY(24px);
+  animation: fadeUp 0.9s ease-out 0.46s forwards;
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ================== 공통 섹션 ================== */
+.needyou-brand section {
+  padding: 100px 5%;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+}
+.needyou-brand .inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+.needyou-brand h2.section-title {
+  font-size: 2.4rem;
+  font-weight: 800;
+  margin-bottom: 40px;
+  position: relative;
+}
+.needyou-brand h2.section-title::after {
+  content: "";
+  display: block;
+  width: 80px;
+  height: 3px;
+  background: var(--yellow);
+  margin: 12px auto 0;
+  border-radius: 2px;
+}
+.needyou-brand p {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: var(--gray);
+  max-width: 720px;
+  margin: 10px auto;
+}
+
+/* ================== 회사 개요 ================== */
+.needyou-brand .company-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+}
+.needyou-brand .company-content .desc { flex: 1; min-width: 300px; text-align: left; }
+.needyou-brand .company-content .info-box {
+  background: var(--blue);
+  color: #fff;
+  padding: 25px 30px;
+  border-left: 5px solid var(--yellow);
+  border-radius: 10px;
+  margin-top: 20px;
+  font-weight: 500;
+}
+.needyou-brand .company-content .graphic {
+  flex: 1;
+  min-width: 320px;
+  height: 260px;
+  border-radius: 15px;
+  background: url("https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=900&q=80") center/cover no-repeat;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+}
+
+/* ================== 제조사의 어려움 ================== */
+.needyou-brand .section-box.alt {
+  background: var(--blue);
+  color: #fff;
+}
+.needyou-brand .section-box.alt h2.section-title { color: var(--yellow); }
+.needyou-brand .challenge-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 45px;
+  margin-bottom: 40px;
+}
+.needyou-brand .challenge-list .circle {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  background: var(--yellow);
+  color: var(--blue);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+  font-size: 1.6rem;
+  margin-bottom: 12px;
+}
+.needyou-brand .section-box.alt p strong {
+  color: var(--yellow);
+  font-weight: 800;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+}
+
+/* ================== INTRODUCTION ================== */
+.needyou-brand .intro-section { background: #f8f9fb; padding: 100px 5%; }
+.needyou-brand .intro-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 50px;
+  align-items: center;
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+.needyou-brand .intro-text { text-align: left; }
+.needyou-brand .intro-text h2 { font-size: 2.4rem; font-weight: 800; color: var(--blue); margin-bottom: 10px; }
+.needyou-brand .intro-text h3 { font-size: 1.2rem; color: #999; font-weight: 600; margin-bottom: 40px; }
+.needyou-brand .intro-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px 24px;
+}
+.needyou-brand .intro-list li { display: flex; align-items: center; font-weight: 700; color: var(--blue); font-size: 1.05rem; }
+.needyou-brand .intro-list li::before { content: "📍"; color: var(--yellow); margin-right: 10px; font-size: 1.2rem; }
+.needyou-brand .intro-image {
+  border-radius: 50%;
+  width: 400px;
+  height: 400px;
+  margin: 0 auto;
+  background: url('https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=800&q=80') center/cover no-repeat;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+/* ================== 진행 프로세스 ================== */
+.needyou-brand .process-steps {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 50px;
+  flex-direction: row;
+}
+.needyou-brand .step {
+  width: 220px;
+  text-align: center;
+}
+.needyou-brand .step .circle {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  border: 5px solid var(--yellow);
+  background: radial-gradient(circle, #fff 60%, var(--yellow) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--blue);
+  font-weight: 800;
+  font-size: 1.3rem;
+  margin: 0 auto 10px;
+}
+.needyou-brand .step p {
+  font-size: 1.05rem;
+  color: var(--gray);
+}
+
+/* ================== 정산 프로세스 ================== */
+.needyou-brand .process-type {
+  border-top: 3px solid var(--yellow);
+  border-bottom: 3px solid #eee;
+  padding: 60px 0;
+  margin-bottom: 70px;
+}
+.needyou-brand .process-type h4 {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: var(--blue);
+}
+.needyou-brand .process-type .sub {
+  font-size: 1.1rem;
+  color: var(--gray);
+  border-bottom: 2px solid var(--yellow);
+  display: inline-block;
+  padding-bottom: 3px;
+  margin-bottom: 40px;
+}
+.needyou-brand .flow-line {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 40px;
+  flex-direction: row;
+}
+.needyou-brand .flow-step {
+  text-align: center;
+  width: 220px;
+}
+.needyou-brand .flow-step .circle {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  border: 5px solid var(--yellow);
+  background: radial-gradient(circle, #fff 60%, var(--yellow) 100%);
+  color: var(--blue);
+  font-weight: 800;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 12px;
+}
+.needyou-brand .flow-step p {
+  font-size: 1rem;
+  color: var(--gray);
+}
+
+/* ================== Q&A ================== */
+.needyou-brand .qa-item {
+  background: #fff;
+  border-left: 5px solid var(--yellow);
+  border-radius: 8px;
+  padding: 25px 30px;
+  margin: 20px auto;
+  max-width: 700px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+}
+.needyou-brand .qa-item .q {
+  color: var(--yellow);
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+/* ================== 배너 ================== */
+.needyou-brand .middleBanner {
+  background: linear-gradient(180deg, #0a3b52 0%, #0d4f6b 100%);
+  color: #fff;
+  text-align: center;
+  height: 600px; /* ← 고정 높이 */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0 5%;
+  overflow: hidden;
+}
+.needyou-brand .middleBanner .text {
+  font-size: 2rem;
+  font-weight: 800;
+  line-height: 1.5;
+  max-width: 700px;
+  opacity: 0;
+  transform: translateY(24px);
+  animation: fadeUp 0.9s ease-out 0.12s forwards;
+}
+.needyou-brand .middleBanner .text p {
+  margin-top: 15px;
+  color: var(--yellow);
+  font-size: 1.1rem;
+  opacity: 0;
+  transform: translateY(24px);
+  animation: fadeUp 0.9s ease-out 0.3s forwards;
+}
+
+/* ================== 반응형 ================== */
+@media (max-width:900px){
+  .needyou-brand .brand { height: 420px; padding: 40px 5%; }
+  .needyou-brand .brand h2 { font-size: 2rem; line-height: 1.3; }
+  .needyou-brand .brand h3 { font-size: 1.1rem; }
+  .needyou-brand .brand p { font-size: 1rem; line-height: 1.7; }
+
+  /* 전화번호 흰글씨 유지 */
+  .needyou-brand .info-box { color: #fff !important; }
+
+  /* 회사 개요 가운데 정렬 */
+  .needyou-brand .company-content {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .needyou-brand .company-content .desc {
+    text-align: center !important;
+  }
+
+  /* 제조사의 어려움 하단 문장 */
+  .needyou-brand .section-box.alt .inner > p {
+    font-size: 1rem;
+    line-height: 1.5;
+    max-width: 22ch;
+    margin: 0 auto;
+    text-align: center;
+    white-space: normal;
+  }
+
+  /* INTRODUCTION 수정 */
+  .needyou-brand .intro-grid { grid-template-columns: 1fr; justify-items: center; }
+  .needyou-brand .intro-image { display: none; }
+  .needyou-brand .intro-text { text-align: center; }
+  .needyou-brand .intro-list { display: flex; flex-direction: column; align-items: center; gap: 10px; text-align: center; }
+
+  /* 진행 & 정산 프로세스 */
+  .needyou-brand .process-steps,
+  .needyou-brand .flow-line {
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 24px !important;
+  }
+  .needyou-brand .step .circle,
+  .needyou-brand .flow-step .circle {
+    width: 120px !important;
+    height: 120px !important;
+    font-size: 1.1rem !important;
+  }
+  .needyou-brand .step p,
+  .needyou-brand .flow-step p {
+    font-size: 0.95rem !important;
+  }
+
+  /* 배너 */
+  .needyou-brand .middleBanner { height: 420px; padding: 40px 5%; }
+  .needyou-brand .middleBanner .text { font-size: 1.6rem; line-height: 1.4; }
+}
+</style>
+
+<!-- HERO -->
+<section class="brand" data-fade>
+  <h2>ABOUT NEED YOU</h2>
+  <h3>신뢰와 상생의 커머스 에이전시</h3>
+  <p>제조사·셀러·소비자가 함께 성장하는<br>공동구매 네트워크를 만듭니다.</p>
+</section>
+
+<!-- 회사 개요 -->
+<section class="section-box" data-fade>
+  <div class="inner company-content">
+    <div class="desc">
+      <h2 class="section-title">회사 개요</h2>
+      <p>니드유는 제조사와 셀러를 연결해<br>신뢰 중심의 유통 생태계를 구축합니다.</p>
+      <div class="info-box">
+        C. 니드유 NEED YOU<br>T. 070-8080-3244<br>E. ynred7788@naver.com
+      </div>
+    </div>
+    <div class="graphic"></div>
+  </div>
+</section>
+
+<!-- 제조사의 어려움 -->
+<section class="section-box alt" data-fade>
+  <div class="inner">
+    <h2 class="section-title">제조사의 어려움</h2>
+    <div class="challenge-list">
+      <div><div class="circle">1</div><p>치열한 경쟁</p></div>
+      <div><div class="circle">2</div><p>마케팅 비용 부담</p></div>
+      <div><div class="circle">3</div><p>고도화된 고객 니즈</p></div>
+      <div><div class="circle">4</div><p>판매 루트 다변화</p></div>
+    </div>
+    <p><strong>공동구매</strong>는 제조사가 살아남기 위한 <strong>필수 전략</strong>입니다.</p>
+  </div>
+</section>
+
+<!-- INTRODUCTION -->
+<section class="intro-section" data-fade>
+  <div class="intro-grid">
+    <div class="intro-text">
+      <h2>INTRODUCTION <span style="color:var(--yellow)">›</span></h2>
+      <h3>니드유 사업 소개</h3>
+      <ul class="intro-list">
+        <li>새로운 판매 매루트 개척</li>
+        <li>인플루언서 협업 및 콘텐츠 개발</li>
+        <li>대량 판매 가능</li>
+        <li>트렌드 빠른 대응</li>
+        <li>바이럴 마케팅 효과</li>
+        <li>상품별 맞춤 셀러 매칭</li>
+        <li>광고비 절감</li>
+        <li>고객 니즈 분석</li>
+      </ul>
+    </div>
+    <div class="intro-image"></div>
+  </div>
+</section>
+
+<!-- 진행 프로세스 -->
+<section class="section-box" data-fade>
+  <h2 class="section-title">진행 프로세스</h2>
+  <p>니드유는 제조사 상품을 분석하고<br>적합한 셀러를 매칭합니다.</p>
+  <div class="process-steps">
+    <div class="step"><div class="circle">제조사</div><p>제품공급 / 셀링포인트 전달</p></div>
+    <div class="step"><div class="circle">니드유</div><p>상품기획 / 셀러매칭</p></div>
+    <div class="step"><div class="circle">셀러</div><p>공동구매 진행 / 콘텐츠 홍보</p></div>
+    <div class="step"><div class="circle">소비자</div><p>제품구매 / 후기작성</p></div>
+  </div>
+</section>
+
+<!-- 정산 프로세스 -->
+<section class="section-box" data-fade>
+  <h2 class="section-title">정산 프로세스</h2>
+  <p>결제 방식에 따른 인플루언서, 제조사, 벤더사 절차입니다.</p>
+  <div class="process-type">
+    <h4>인플루언서</h4>
+    <div class="sub">결제 링크 사용</div>
+    <div class="flow-line">
+      <div class="flow-step"><div class="circle">상품정보전달</div><p>제조사로부터 상세페이지 전달</p></div>
+      <div class="flow-step"><div class="circle">상품판매</div><p>판매 발주서 수신 후 전달</p></div>
+      <div class="flow-step"><div class="circle">정산 완료</div><p>14일 내 정산</p></div>
+    </div>
+  </div>
+  <div class="process-type">
+    <h4>제조사</h4>
+    <div class="sub">자체 결제 링크 사용</div>
+    <div class="flow-line">
+      <div class="flow-step"><div class="circle">결제링크오픈</div><p>판매사이트 생성</p></div>
+      <div class="flow-step"><div class="circle">상품판매</div><p>주문 접수 / 발주</p></div>
+      <div class="flow-step"><div class="circle">정산 완료</div><p>14일 내 정산 완료</p></div>
+    </div>
+  </div>
+  <div class="process-type">
+    <h4>벤더사</h4>
+    <div class="sub">결제 링크 사용</div>
+    <div class="flow-line">
+      <div class="flow-step"><div class="circle">상품정보전달</div><p>상세페이지 제공</p></div>
+      <div class="flow-step"><div class="circle">상품판매</div><p>발주서 수신 / 전달</p></div>
+      <div class="flow-step"><div class="circle">정산 완료</div><p>14일 내 정산 완료</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- Q&A -->
+<section class="section-box alt" data-fade>
+  <h2 class="section-title">Q&A</h2>
+  <div class="qa-item"><p class="q">시장가가 무너지지 않나요?</p><p>폐쇄몰 중심으로 판매하여 온라인 가격을 보호합니다.</p></div>
+  <div class="qa-item"><p class="q">판매량은 어느 정도인가요?</p><p>제품 콘셉트와 셀러 영향력에 따라 다양합니다.</p></div>
+  <div class="qa-item"><p class="q">정산은 언제 이뤄지나요?</p><p>공동구매 종료 후 14일 내 정산됩니다.</p></div>
+</section>
+
+<!-- 배너 -->
+<section class="middleBanner" data-fade>
+  <div class="text">
+    세상에 단 하나뿐인<br>특별함을 만나보세요.
+    <p>기업의 가치와 메시지를 전달하는 니드유</p>
+  </div>
+</section>
+
+<script>
+window.addEventListener("scroll",()=>{document.querySelectorAll(".needyou-brand [data-fade]").forEach(el=>{const rect=el.getBoundingClientRect();if(rect.top<window.innerHeight-100)el.classList.add("visible");});});
+</script>
+</div>

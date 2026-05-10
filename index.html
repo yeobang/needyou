@@ -1,0 +1,860 @@
+﻿<!--@layout(/layout/basic/main.html)-->
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NEEDU COMPANY | 공동구매 전문 벤더</title>
+  <meta name="description" content="니드유컴퍼니는 제품 공급사와 인스타그램 셀럽을 연결해 공동구매 성과를 만드는 전문 벤더사입니다.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --black: #000000;
+      --cream: #f5f1eb;
+      --cream-dark: #e6ddd2;
+      --brown: #8b6b4c;
+      --brown-dark: #5d4631;
+      --ink: #1d1a17;
+      --muted: #72685f;
+      --line: rgba(0, 0, 0, .12);
+      --white: #ffffff;
+      --serif: "Cormorant Garamond", Georgia, serif;
+      --sans: "Noto Sans KR", "Pretendard", "Malgun Gothic", sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      min-width: 320px;
+      color: var(--ink);
+      background: var(--cream);
+      font-family: var(--sans);
+      letter-spacing: 0;
+    }
+    body.is-lock { overflow: hidden; }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    button { font: inherit; }
+
+    .site-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 50;
+      border-bottom: 1px solid rgba(255, 255, 255, .16);
+      color: var(--white);
+      transition: background .25s ease, color .25s ease, border-color .25s ease;
+    }
+    .site-header.is-solid {
+      background: rgba(245, 241, 235, .94);
+      color: var(--black);
+      border-color: var(--line);
+      backdrop-filter: blur(14px);
+    }
+    .site-header__inner {
+      width: min(1180px, calc(100% - 40px));
+      height: 78px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 32px;
+    }
+    .brand-logo {
+      font-family: var(--serif);
+      font-size: 28px;
+      font-weight: 700;
+      line-height: 1;
+      letter-spacing: 0;
+    }
+    .brand-logo span {
+      display: block;
+      margin-top: 4px;
+      font-family: var(--sans);
+      font-size: 11px;
+      font-weight: 600;
+      color: currentColor;
+      opacity: .76;
+    }
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      font-size: 15px;
+      font-weight: 600;
+    }
+    .nav a {
+      position: relative;
+      padding: 8px 0;
+    }
+    .nav a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 2px;
+      height: 1px;
+      background: currentColor;
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform .25s ease;
+    }
+    .nav a:hover::after { transform: scaleX(1); transform-origin: left; }
+    .menu-toggle {
+      display: none;
+      width: 42px;
+      height: 42px;
+      border: 1px solid currentColor;
+      background: transparent;
+      color: inherit;
+      align-items: center;
+      justify-content: center;
+    }
+    .menu-toggle span,
+    .menu-toggle span::before,
+    .menu-toggle span::after {
+      content: "";
+      display: block;
+      width: 18px;
+      height: 1px;
+      background: currentColor;
+      transition: transform .25s ease;
+    }
+    .menu-toggle span::before { transform: translateY(-6px); }
+    .menu-toggle span::after { transform: translateY(5px); }
+
+    .hero {
+      min-height: 92vh;
+      position: relative;
+      display: flex;
+      align-items: flex-end;
+      overflow: hidden;
+      color: var(--white);
+      background:
+        linear-gradient(90deg, rgba(0, 0, 0, .74), rgba(0, 0, 0, .42) 44%, rgba(0, 0, 0, .1)),
+        url("https://images.unsplash.com/photo-1524758631624-e2822e304c36?q=85&w=2200&auto=format&fit=crop") center/cover;
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 180px;
+      background: linear-gradient(0deg, var(--cream), rgba(245, 241, 235, 0));
+    }
+    .hero__inner {
+      position: relative;
+      z-index: 1;
+      width: min(1180px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: 170px 0 132px;
+    }
+    .eyebrow {
+      margin: 0 0 18px;
+      color: var(--cream-dark);
+      font-family: var(--serif);
+      font-size: clamp(19px, 2vw, 28px);
+      font-weight: 600;
+    }
+    .hero h1 {
+      max-width: 760px;
+      margin: 0;
+      color: var(--white);
+      font-family: var(--serif);
+      font-size: clamp(54px, 8vw, 118px);
+      font-weight: 700;
+      line-height: .88;
+      letter-spacing: 0;
+    }
+    .hero__copy {
+      max-width: 620px;
+      margin: 28px 0 0;
+      color: rgba(255, 255, 255, .86);
+      font-size: clamp(17px, 1.6vw, 21px);
+      line-height: 1.8;
+      word-break: keep-all;
+    }
+    .hero__actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 42px;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 50px;
+      padding: 0 24px;
+      border: 1px solid var(--black);
+      background: var(--black);
+      color: var(--white);
+      font-weight: 700;
+      transition: background .2s ease, color .2s ease, border-color .2s ease, transform .2s ease;
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn--light {
+      border-color: rgba(255, 255, 255, .8);
+      background: rgba(255, 255, 255, .08);
+      color: var(--white);
+    }
+    .btn--brown {
+      border-color: var(--brown);
+      background: var(--brown);
+    }
+
+    .section {
+      padding: 112px 0;
+      background: var(--cream);
+    }
+    .section--white { background: var(--white); }
+    .section--black {
+      background: var(--black);
+      color: var(--white);
+    }
+    .section__inner {
+      width: min(1180px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+    .section-head {
+      display: grid;
+      grid-template-columns: minmax(180px, 300px) 1fr;
+      gap: 60px;
+      align-items: end;
+      margin-bottom: 54px;
+    }
+    .section-label {
+      color: var(--brown);
+      font-family: var(--serif);
+      font-size: 22px;
+      font-weight: 700;
+    }
+    .section-title {
+      margin: 0;
+      font-family: var(--sans);
+      font-size: clamp(42px, 5.8vw, 76px);
+      line-height: 1.12;
+      font-weight: 800;
+      color: inherit;
+      word-break: keep-all;
+    }
+    .section-desc {
+      max-width: 680px;
+      margin: 22px 0 0;
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.85;
+      word-break: keep-all;
+    }
+    .section--black .section-desc { color: rgba(255,255,255,.72); }
+
+    .intro-grid {
+      display: grid;
+      grid-template-columns: 1.08fr .92fr;
+      gap: 58px;
+      align-items: stretch;
+    }
+    .intro-image {
+      min-height: 520px;
+      background: url("https://images.unsplash.com/photo-1556761175-4b46a572b786?q=85&w=1600&auto=format&fit=crop") center/cover;
+    }
+    .intro-panel {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 54px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.52);
+    }
+    .intro-panel p {
+      margin: 0 0 18px;
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.85;
+      word-break: keep-all;
+    }
+    .intro-panel strong { color: var(--ink); }
+
+    .flow {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      border-top: 1px solid var(--line);
+      border-left: 1px solid var(--line);
+    }
+    .flow-card {
+      min-height: 250px;
+      padding: 28px 24px;
+      border-right: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      background: rgba(255,255,255,.38);
+    }
+    .flow-card__num {
+      color: var(--brown);
+      font-family: var(--serif);
+      font-size: 34px;
+      font-weight: 700;
+    }
+    .flow-card h3 {
+      margin: 34px 0 12px;
+      font-size: 21px;
+      line-height: 1.35;
+    }
+    .flow-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.75;
+      word-break: keep-all;
+    }
+
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .portfolio-card {
+      min-height: 360px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      position: relative;
+      overflow: hidden;
+      padding: 28px;
+      color: var(--white);
+      background: #222;
+    }
+    .portfolio-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: var(--image) center/cover;
+      transform: scale(1);
+      transition: transform .6s ease;
+    }
+    .portfolio-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(0deg, rgba(0,0,0,.78), rgba(0,0,0,.1));
+    }
+    .portfolio-card:hover::before { transform: scale(1.06); }
+    .portfolio-card > * {
+      position: relative;
+      z-index: 1;
+    }
+    .portfolio-card .tag {
+      align-self: flex-start;
+      margin-bottom: 18px;
+      padding: 7px 10px;
+      border: 1px solid rgba(255,255,255,.46);
+      font-size: 12px;
+      font-weight: 700;
+      color: rgba(255,255,255,.88);
+    }
+    .portfolio-card h3 {
+      margin: 0 0 10px;
+      color: var(--white);
+      font-size: 25px;
+      line-height: 1.25;
+    }
+    .portfolio-card p {
+      margin: 0;
+      color: rgba(255,255,255,.76);
+      font-size: 14px;
+      line-height: 1.65;
+    }
+
+    .case-layout {
+      display: grid;
+      grid-template-columns: .9fr 1.1fr;
+      gap: 44px;
+      align-items: center;
+      margin-top: 58px;
+    }
+    .instagram-frame {
+      overflow: hidden;
+      border: 2px solid var(--black);
+      background: var(--white);
+      color: var(--black);
+    }
+    .instagram-top {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 18px;
+      border-bottom: 1px solid var(--line);
+      font-weight: 800;
+    }
+    .avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--cream-dark);
+    }
+    .instagram-image {
+      aspect-ratio: 1 / .78;
+      background: url("https://images.unsplash.com/photo-1555041469-a586c61ea9bc?q=85&w=1400&auto=format&fit=crop") center/cover;
+    }
+    .instagram-meta {
+      padding: 18px;
+      font-size: 14px;
+      line-height: 1.7;
+    }
+    .case-info {
+      display: grid;
+      gap: 14px;
+    }
+    .case-row {
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: 20px;
+      padding: 18px 0;
+      border-bottom: 1px solid rgba(255,255,255,.18);
+    }
+    .case-row span {
+      color: rgba(255,255,255,.55);
+      font-family: var(--serif);
+      font-size: 21px;
+      font-weight: 700;
+    }
+    .case-row strong {
+      color: var(--white);
+      font-size: 18px;
+      line-height: 1.6;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-top: 44px;
+    }
+    .stat {
+      padding: 34px;
+      border: 1px solid var(--line);
+      background: var(--cream);
+    }
+    .stat strong {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--brown);
+      font-family: var(--serif);
+      font-size: 46px;
+      line-height: 1;
+    }
+    .stat span {
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+    .contact-card {
+      min-height: 360px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 42px;
+      border: 1px solid var(--line);
+      background: var(--white);
+    }
+    .contact-card h3 {
+      margin: 0 0 18px;
+      font-family: var(--sans);
+      font-size: 34px;
+      line-height: 1.25;
+      font-weight: 800;
+    }
+    .contact-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.8;
+      word-break: keep-all;
+    }
+    .contact-list {
+      display: grid;
+      gap: 10px;
+      margin: 30px 0;
+      padding: 0;
+      color: var(--muted);
+      font-size: 15px;
+    }
+    .contact-list li {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      list-style: none;
+    }
+    .contact-list li::before {
+      content: "";
+      width: 5px;
+      height: 5px;
+      background: var(--brown);
+    }
+
+    .footer {
+      padding: 54px 0;
+      background: var(--black);
+      color: rgba(255,255,255,.7);
+    }
+    .footer__inner {
+      width: min(1180px, calc(100% - 40px));
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      gap: 30px;
+      align-items: flex-end;
+    }
+    .footer strong {
+      display: block;
+      margin-bottom: 12px;
+      color: var(--white);
+      font-family: var(--serif);
+      font-size: 30px;
+    }
+    .footer p {
+      margin: 0;
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    [data-reveal] {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity .7s ease, transform .7s ease;
+    }
+    [data-reveal].is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 1024px) {
+      .flow { grid-template-columns: repeat(2, 1fr); }
+      .portfolio-grid { grid-template-columns: repeat(2, 1fr); }
+      .intro-grid,
+      .case-layout { grid-template-columns: 1fr; }
+      .intro-image { min-height: 420px; }
+    }
+
+    @media (max-width: 760px) {
+      .site-header__inner {
+        width: min(100% - 28px, 1180px);
+        height: 68px;
+      }
+      .brand-logo { font-size: 24px; }
+      .menu-toggle { display: inline-flex; }
+      .nav {
+        position: fixed;
+        top: 68px;
+        left: 0;
+        right: 0;
+        display: none;
+        padding: 26px 20px 32px;
+        background: var(--cream);
+        color: var(--black);
+        border-bottom: 1px solid var(--line);
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 18px;
+      }
+      .nav.is-open { display: flex; }
+      .hero { min-height: 86vh; }
+      .hero__inner {
+        width: min(100% - 28px, 1180px);
+        padding: 130px 0 90px;
+      }
+      .hero h1 { font-size: clamp(48px, 16vw, 70px); }
+      .hero__copy { font-size: 16px; }
+      .section { padding: 78px 0; }
+      .section__inner { width: min(100% - 28px, 1180px); }
+      .section-head {
+        grid-template-columns: 1fr;
+        gap: 14px;
+        margin-bottom: 36px;
+      }
+      .intro-panel { padding: 28px; }
+      .flow,
+      .portfolio-grid,
+      .stats,
+      .contact-grid { grid-template-columns: 1fr; }
+      .portfolio-card { min-height: 330px; }
+      .case-row {
+        grid-template-columns: 1fr;
+        gap: 6px;
+      }
+      .contact-card { padding: 30px; }
+      .footer__inner {
+        width: min(100% - 28px, 1180px);
+        display: block;
+      }
+      .footer p + p { margin-top: 14px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header" id="siteHeader">
+    <div class="site-header__inner">
+      <a class="brand-logo" href="/index.html" aria-label="NEEDU COMPANY home">NEEDU<span>COMPANY</span></a>
+      <nav class="nav" id="navMenu" aria-label="주요 메뉴">
+        <a href="/layout/basic/company.html">회사소개</a>
+        <a href="/layout/basic/portfolio.html">포트폴리오</a>
+        <a href="/layout/basic/partner.html">업체 제휴문의</a>
+        <a href="/layout/basic/creator.html">셀럽 제휴문의</a>
+      </nav>
+      <button class="menu-toggle" id="menuToggle" type="button" aria-label="메뉴 열기"><span></span></button>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="hero__inner" data-reveal>
+        <p class="eyebrow">Group Buying Vendor</p>
+        <h1>Products need a market. We make the route.</h1>
+        <p class="hero__copy">
+          니드유컴퍼니는 아직 수면 위로 드러나지 않은 제품과 공급사를 발굴하고, 인스타그램 셀럽과 연결해 공동구매 성과를 만드는 전문 벤더사입니다.
+        </p>
+        <div class="hero__actions">
+          <a class="btn btn--brown" href="/layout/basic/portfolio.html">진행 사례 보기</a>
+          <a class="btn btn--light" href="/layout/basic/partner.html">제휴 문의하기</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="section__inner">
+        <div class="section-head" data-reveal>
+          <div class="section-label">About</div>
+          <div>
+            <h2 class="section-title">제품이 팔리는 구조를 설계합니다.</h2>
+            <p class="section-desc">
+              니드유는 단순히 제품을 판매하는 것이 아니라, 제품 선정부터 콘텐츠 기획, 공동구매 운영, 재구매 설계까지 전 과정을 관리합니다.
+            </p>
+          </div>
+        </div>
+        <div class="intro-grid">
+          <div class="intro-image" data-reveal></div>
+          <div class="intro-panel" data-reveal>
+            <p>
+              좋은 제품이 시장에서 바로 선택받는 것은 아닙니다. 니드유는 타겟 고객과 판매 채널을 먼저 분석하고, 제품의 강점이 구매 이유로 전달될 수 있도록 스토리와 운영 방식을 함께 설계합니다.
+            </p>
+            <p>
+              인스타그램 셀럽, 브랜드, 소비자 사이의 흐름을 조율하며 단기 판매를 넘어 <strong>반복 가능한 매출 구조</strong>를 만드는 것이 니드유의 역할입니다.
+            </p>
+            <p>
+              진정성 있는 협업을 바탕으로 브랜드와 셀러가 함께 성장할 수 있는 환경을 만듭니다.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--white">
+      <div class="section__inner">
+        <div class="section-head" data-reveal>
+          <div class="section-label">Process</div>
+          <div>
+            <h2 class="section-title">처음부터 끝까지, 니드유가 함께합니다.</h2>
+            <p class="section-desc">
+              제품 분석, 콘텐츠 기획, 공구 실행, 운영 대응, 재공구 확장까지 공동구매의 핵심 과정을 체계적으로 관리합니다.
+            </p>
+          </div>
+        </div>
+        <div class="flow">
+          <article class="flow-card" data-reveal>
+            <div class="flow-card__num">01</div>
+            <h3>제품 분석 및 시장 검증</h3>
+            <p>타겟 고객과 경쟁 상품을 비교하고, 가격과 구성 전략까지 판매 가능성을 먼저 검증합니다.</p>
+          </article>
+          <article class="flow-card" data-reveal>
+            <div class="flow-card__num">02</div>
+            <h3>콘텐츠 기획</h3>
+            <p>인플루언서 매칭과 핵심 판매 포인트를 정리해 구매를 이끄는 스토리를 만듭니다.</p>
+          </article>
+          <article class="flow-card" data-reveal>
+            <div class="flow-card__num">03</div>
+            <h3>공동구매 실행</h3>
+            <p>인스타그램, 커뮤니티, 폐쇄몰 등 채널 특성에 맞춰 집중적인 판매 흐름을 운영합니다.</p>
+          </article>
+          <article class="flow-card" data-reveal>
+            <div class="flow-card__num">04</div>
+            <h3>운영 및 대응</h3>
+            <p>고객 반응과 이슈를 빠르게 확인하고, CS 흐름을 관리해 매출 손실을 줄입니다.</p>
+          </article>
+          <article class="flow-card" data-reveal>
+            <div class="flow-card__num">05</div>
+            <h3>재공구 및 확장</h3>
+            <p>축적된 데이터를 바탕으로 재구매를 설계하고 지속 가능한 브랜드 성장을 만듭니다.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--black" id="portfolio">
+      <div class="section__inner">
+        <div class="section-head" data-reveal>
+          <div class="section-label">Portfolio</div>
+          <div>
+            <h2 class="section-title">공동구매 진행 사례</h2>
+            <p class="section-desc">
+              제품과 셀러의 접점을 설계하고, 실제 판매 흐름으로 이어진 니드유의 대표 프로젝트입니다.
+            </p>
+          </div>
+        </div>
+        <div class="portfolio-grid">
+          <article class="portfolio-card" style="--image:url('https://images.unsplash.com/photo-1555041469-a586c61ea9bc?q=85&w=1000&auto=format&fit=crop')" data-reveal>
+            <span class="tag">Living</span>
+            <h3>리젠스</h3>
+            <p>제니마망, 신림댁, 떠아니네, 예나홈 등 셀러 협업 진행</p>
+          </article>
+          <article class="portfolio-card" style="--image:url('https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?q=85&w=1000&auto=format&fit=crop')" data-reveal>
+            <span class="tag">Home</span>
+            <h3>인디에어</h3>
+            <p>윤자네, 도다미네, 호하우스, 바이미룸 등 채널별 공구 운영</p>
+          </article>
+          <article class="portfolio-card" style="--image:url('https://images.unsplash.com/photo-1519710164239-da123dc03ef4?q=85&w=1000&auto=format&fit=crop')" data-reveal>
+            <span class="tag">Lifestyle</span>
+            <h3>바 풀</h3>
+            <p>제니마망, 도다미네, 리빙유, 희치홈 등 타겟 셀러 매칭</p>
+          </article>
+          <article class="portfolio-card" style="--image:url('https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?q=85&w=1000&auto=format&fit=crop')" data-reveal>
+            <span class="tag">Kitchen</span>
+            <h3>오베 소창</h3>
+            <p>희치홈, 신림댁, 마마스키친, 봄주부 등 다수 셀러 진행</p>
+          </article>
+          <article class="portfolio-card" style="--image:url('https://images.unsplash.com/photo-1494438639946-1ebd1d20bf85?q=85&w=1000&auto=format&fit=crop')" data-reveal>
+            <span class="tag">Home Office</span>
+            <h3>스마트메이드 스탠드</h3>
+            <p>도다미네, 희치홈, 하이잼스, 위쓰담북 협업 진행</p>
+          </article>
+          <article class="portfolio-card" style="--image:url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=85&w=1000&auto=format&fit=crop')" data-reveal>
+            <span class="tag">Beauty</span>
+            <h3>큐모발</h3>
+            <p>도다미네, 코루비, 조유경, 듀얼홀릭, 찐하트 등 진행</p>
+          </article>
+        </div>
+
+        <div class="case-layout" data-reveal>
+          <div class="instagram-frame">
+            <div class="instagram-top">
+              <div class="avatar"></div>
+              <div>@needyou.company</div>
+            </div>
+            <div class="instagram-image"></div>
+            <div class="instagram-meta">
+              <strong>공동구매 진행 예시</strong><br>
+              제품 대표 이미지와 인스타그램 공구 캡처를 함께 배치해 실제 진행감을 보여줍니다.
+            </div>
+          </div>
+          <div class="case-info">
+            <div class="case-row"><span>Product</span><strong>리젠스 소파</strong></div>
+            <div class="case-row"><span>Seller</span><strong>제니마망, 신림댁, 떠아니네, 예나홈 외</strong></div>
+            <div class="case-row"><span>Round</span><strong>1차 25.12.18 / 2차 26.01.07 / 추가 진행 예정</strong></div>
+            <div class="case-row"><span>Format</span><strong>제품 대표 이미지, 인스타그램 캡처, 매출 상승 그래프 삽입 가능</strong></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--white" id="partner">
+      <div class="section__inner">
+        <div class="section-head" data-reveal>
+          <div class="section-label">For Brands</div>
+          <div>
+            <h2 class="section-title">제품만 준비하세요. 판매는 니드유가 만듭니다.</h2>
+            <p class="section-desc">
+              좋은 제품을 가지고 있지만 판매에 어려움을 겪고 있다면, 니드유와 함께 새로운 공동구매 기회를 만들어보세요.
+            </p>
+          </div>
+        </div>
+        <div class="stats" data-reveal>
+          <div class="stat"><strong>300+</strong><span>누적 공동구매 프로젝트</span></div>
+          <div class="stat"><strong>XX억</strong><span>누적 매출 데이터 확인 후 반영</span></div>
+          <div class="stat"><strong>XX개</strong><span>협업 브랜드 수 확인 후 반영</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="creator">
+      <div class="section__inner">
+        <div class="contact-grid">
+          <article class="contact-card" data-reveal>
+            <div>
+              <h3>업체 제휴문의</h3>
+              <p>제품의 가치를 실제 매출로 연결하고 싶은 제조사, 공급사, 브랜드사를 기다립니다.</p>
+              <ul class="contact-list">
+                <li>업체명, 담당자명, 연락처</li>
+                <li>제품명, 카테고리, 제안 내용</li>
+                <li>희망 진행 일정 및 문의 내용</li>
+              </ul>
+            </div>
+            <a class="btn btn--brown" href="https://open.kakao.com/o/sfdCZ0dg" target="_blank" rel="noopener">업체 제휴 문의하기</a>
+          </article>
+          <article class="contact-card" data-reveal>
+            <div>
+              <h3>셀럽 제휴문의</h3>
+              <p>니드유는 제품 소싱부터 콘텐츠 기획, 공구 운영, 고객 응대까지 함께하는 협업 파트너입니다.</p>
+              <ul class="contact-list">
+                <li>이름 또는 활동명, 연락처</li>
+                <li>인스타그램 계정, 팔로워 수</li>
+                <li>주요 콘텐츠 분야와 희망 제품군</li>
+              </ul>
+            </div>
+            <a class="btn" href="https://open.kakao.com/o/sfdCZ0dg" target="_blank" rel="noopener">셀럽 제휴 문의하기</a>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer__inner">
+      <div>
+        <strong>NEEDU COMPANY</strong>
+        <p>제품 공급사와 셀럽을 연결해 공동구매 성과를 만드는 전문 벤더사</p>
+      </div>
+      <p>Copyright &copy; NEEDU COMPANY. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    const header = document.getElementById("siteHeader");
+    const menu = document.getElementById("navMenu");
+    const toggle = document.getElementById("menuToggle");
+    const onScroll = () => header.classList.toggle("is-solid", window.scrollY > 24);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+
+    toggle.addEventListener("click", () => {
+      menu.classList.toggle("is-open");
+      document.body.classList.toggle("is-lock", menu.classList.contains("is-open"));
+    });
+    menu.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => {
+        menu.classList.remove("is-open");
+        document.body.classList.remove("is-lock");
+      });
+    });
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.18 });
+    document.querySelectorAll("[data-reveal]").forEach((el) => observer.observe(el));
+  </script>
+</body>
+</html>

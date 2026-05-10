@@ -1,0 +1,120 @@
+﻿<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Cache-Control" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+  <meta http-equiv="Pragma" content="no-cache" />
+
+  <title>NEEDU COMPANY</title>
+  <link rel="preconnect" href="https://img.echosting.cafe24.com">
+
+  <!--@css(/layout/basic/css/common.css)-->
+  <!--@css(/layout/basic/css/layout.css)-->
+  <!--@css(/layout/basic/css/fonts.css)-->
+  <!--@css(/layout/basic/css/ec-base-ui.css)-->
+  <!--@css(/layout/basic/css/ec-base-button.css)-->
+  <!--@css(/layout/basic/css/ec-base-tooltip.css)-->
+  <!--@css(/layout/basic/css/ec-base-product.css)-->
+  <!--@css(/layout/basic/css/main.css)-->
+
+  <!--@js(/js/swiper-bundle.js)-->
+  <!--@js(/layout/basic/js/main.js)-->
+  <!--@js(/layout/basic/js/layout.js)-->
+
+  <style>
+    #header {
+      background: #f5f1eb !important;
+      border-bottom: 1px solid rgba(0, 0, 0, .1);
+    }
+    #header .inner {
+      width: min(1180px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+    #header .topArea {
+      display: flex !important;
+      align-items: center !important;
+      justify-content: space-between;
+      min-height: 78px;
+      padding: 0 !important;
+      margin: 0 !important;
+    }
+    #header .topArea__logo img {
+      width: 180px !important;
+      height: auto !important;
+      object-fit: contain;
+      transform: none !important;
+    }
+    #header .topArea__user,
+    #header .navigation__util,
+    #header .xans-layout-statelogoff,
+    #header .xans-layout-statelogon {
+      display: none !important;
+    }
+    .needyou-navigation {
+      display: flex;
+      justify-content: flex-end;
+      padding: 0 0 22px;
+    }
+    .needyou-navigation ul {
+      display: flex;
+      gap: 30px;
+      margin: 0;
+      padding: 0;
+    }
+    .needyou-navigation li { list-style: none; }
+    .needyou-navigation a {
+      color: #000;
+      font-size: 15px;
+      font-weight: 700;
+      text-decoration: none;
+    }
+    .needyou-navigation a:hover {
+      color: #8b6b4c;
+      text-decoration: none;
+    }
+    @media (max-width: 768px) {
+      #header .inner { width: min(100% - 28px, 1180px); }
+      #header .topArea { min-height: 68px; }
+      #header .topArea__logo img { width: 140px !important; }
+      .needyou-navigation { justify-content: center; padding-bottom: 16px; }
+      .needyou-navigation ul {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 12px 18px;
+      }
+      .needyou-navigation a { font-size: 14px; }
+    }
+  </style>
+</head>
+
+<body id="main">
+  <div id="skipNavigation">
+    <p><a href="#contents">본문 바로가기</a></p>
+  </div>
+
+  <div id="wrap">
+    <header id="header">
+      <div class="inner">
+        <div class="topArea">
+          <h1 module="Layout_LogoTop" class="topArea__logo">
+            <a href="/index.html"><img src="{$logo}" alt="{$mall_name}" /></a>
+          </h1>
+        </div>
+        <!--@import(/layout/basic/navigation.html)-->
+      </div>
+    </header>
+
+    <!--@import(/layout/basic/sidebar.html)-->
+
+    <div id="container">
+      <main id="contents" role="main">
+        <!--@contents-->
+      </main>
+    </div>
+
+    <!--@import(/layout/basic/footer.html)-->
+  </div>
+</body>
+</html>

@@ -1,0 +1,53 @@
+﻿<!--@layout(/layout/basic/layout.html)-->
+<div class="needyou-subpage partner-page">
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap");
+    .needyou-subpage { --black:#000; --cream:#f5f1eb; --brown:#8b6b4c; --ink:#1d1a17; --muted:#72685f; --line:rgba(0,0,0,.12); font-family:"Noto Sans KR",sans-serif; color:var(--ink); background:var(--cream); }
+    .sub-hero { padding:150px 0 94px; background:var(--black); color:#fff; }
+    .sub-inner { width:min(980px, calc(100% - 40px)); margin:0 auto; }
+    .sub-label { color:#d8c6b4; font-family:"Cormorant Garamond",serif; font-size:24px; font-weight:700; }
+    .sub-title { margin:18px 0 0; font-family:"Noto Sans KR",sans-serif; font-size:clamp(42px,6vw,76px); line-height:1.15; font-weight:800; color:#fff; word-break:keep-all; }
+    .sub-copy { max-width:720px; margin:28px 0 0; color:rgba(255,255,255,.74); font-size:19px; line-height:1.85; word-break:keep-all; }
+    .sub-section { padding:100px 0; }
+    .stats { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-bottom:50px; }
+    .stat { padding:34px; border:1px solid var(--line); background:#fff; }
+    .stat strong { display:block; color:var(--brown); font-family:"Cormorant Garamond",serif; font-size:48px; line-height:1; }
+    .stat span { display:block; margin-top:10px; color:var(--muted); font-size:15px; }
+    .contact-box { padding:46px; background:#fff; border:1px solid var(--line); }
+    .contact-box h2 { margin:0 0 18px; font-family:"Cormorant Garamond",serif; font-size:48px; }
+    .contact-box p { margin:0 0 24px; color:var(--muted); font-size:17px; line-height:1.85; word-break:keep-all; }
+    .fields { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:28px 0; padding:0; }
+    .fields li { list-style:none; padding:14px 16px; background:var(--cream); color:var(--muted); font-weight:600; }
+    .btn { display:inline-flex; align-items:center; justify-content:center; min-height:52px; padding:0 24px; background:var(--brown); color:#fff; font-weight:800; text-decoration:none; }
+    @media (max-width:720px){ .sub-inner{width:min(100% - 28px,980px);} .sub-hero{padding:112px 0 70px;} .sub-section{padding:72px 0;} .stats,.fields{grid-template-columns:1fr;} .contact-box{padding:30px;} }
+  </style>
+  <section class="sub-hero">
+    <div class="sub-inner">
+      <div class="sub-label">For Brands</div>
+      <h1 class="sub-title">제품만 준비하세요. 판매는 니드유가 만듭니다.</h1>
+      <p class="sub-copy">다양한 카테고리에서 검증된 운영 경험을 바탕으로 제품의 가치를 실제 매출로 연결합니다.</p>
+    </div>
+  </section>
+  <section class="sub-section">
+    <div class="sub-inner">
+      <div class="stats">
+        <div class="stat"><strong>300+</strong><span>누적 공동구매 프로젝트</span></div>
+        <div class="stat"><strong>XX억</strong><span>누적 매출 데이터 확인 후 반영</span></div>
+        <div class="stat"><strong>XX개</strong><span>협업 브랜드 수 확인 후 반영</span></div>
+      </div>
+      <div class="contact-box">
+        <h2>Partner Inquiry</h2>
+        <p>좋은 제품을 가지고 있지만 판매에 어려움을 겪고 계신가요? 지금, 니드유와 함께 새로운 기회를 만들어보세요.</p>
+        <ul class="fields">
+          <li>업체명 / 담당자명</li>
+          <li>연락처 / 이메일</li>
+          <li>제품명 / 제품 카테고리</li>
+          <li>제품 소개 또는 제안 내용</li>
+          <li>희망 진행 일정</li>
+          <li>첨부파일 여부</li>
+        </ul>
+        <a class="btn" href="https://open.kakao.com/o/sfdCZ0dg" target="_blank" rel="noopener">업체 제휴 문의하기</a>
+      </div>
+    </div>
+  </section>
+</div>
