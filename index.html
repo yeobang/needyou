@@ -1,16 +1,5 @@
-﻿<!doctype html>
-<html lang="ko">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>NEEDU COMPANY | 공동구매 전문 벤더</title>
-  <meta name="description" content="니드유컴퍼니는 제품 공급사와 인스타그램 셀럽을 연결해 공동구매 성과를 만드는 전문 벤더사입니다.">
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
-  <style>
+﻿<!--@layout(/layout/basic/main.html)-->
+<style>
     :root {
       --black:      #000000;
       --cream:      #f5f1eb;
@@ -698,22 +687,7 @@
       .footer__inner { flex-direction: column; align-items: flex-start; gap: 24px; }
     }
   </style>
-</head>
-<body>
-  <header class="site-header" id="siteHeader">
-    <div class="site-header__inner">
-      <a class="brand-logo" href="/index.html" aria-label="NEEDU COMPANY home">NEEDU<span>COMPANY</span></a>
-      <nav class="nav" id="navMenu" aria-label="주요 메뉴">
-        <a href="/layout/basic/company.html">회사소개</a>
-        <a href="/layout/basic/portfolio.html">포트폴리오</a>
-        <a href="/layout/basic/partner.html">업체 제휴문의</a>
-        <a href="/layout/basic/creator.html">셀럽 제휴문의</a>
-      </nav>
-      <button class="menu-toggle" id="menuToggle" type="button" aria-label="메뉴 열기"><span></span></button>
-    </div>
-  </header>
-
-  <main id="top">
+<main id="top">
     <section class="hero">
       <div class="hero__inner" data-reveal>
         <p class="eyebrow">공동구매 전문 벤더</p>
@@ -1047,49 +1021,14 @@
       </div>
     </section>
   </main>
-
-  <footer class="footer">
-    <div class="footer__inner">
-      <div>
-        <strong>NEEDU COMPANY</strong>
-        <p>제품 공급사와 셀럽을 연결해 공동구매 성과를 만드는 전문 벤더사</p>
-        <div class="footer__sns">
-          <a href="https://www.instagram.com/gzgz.1234/" target="_blank" rel="noopener">Instagram</a>
-          <a href="https://open.kakao.com/o/sfdCZ0dg" target="_blank" rel="noopener">Kakao</a>
-        </div>
-      </div>
-      <p>Copyright &copy; NEEDU COMPANY. All rights reserved.</p>
-    </div>
-  </footer>
-
-  <script>
-    const header = document.getElementById("siteHeader");
-    const menu = document.getElementById("navMenu");
-    const toggle = document.getElementById("menuToggle");
-    const onScroll = () => header.classList.toggle("is-solid", window.scrollY > 24);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-
-    toggle.addEventListener("click", () => {
-      menu.classList.toggle("is-open");
-      document.body.classList.toggle("is-lock", menu.classList.contains("is-open"));
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("is-visible");
+        observer.unobserve(entry.target);
+      }
     });
-    menu.querySelectorAll("a").forEach((link) => {
-      link.addEventListener("click", () => {
-        menu.classList.remove("is-open");
-        document.body.classList.remove("is-lock");
-      });
-    });
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("is-visible");
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.18 });
-    document.querySelectorAll("[data-reveal]").forEach((el) => observer.observe(el));
-  </script>
-</body>
-</html>
+  }, { threshold: 0.18 });
+  document.querySelectorAll("[data-reveal]").forEach((el) => observer.observe(el));
+</script>
