@@ -1,0 +1,145 @@
+﻿﻿<!--@layout(/layout/basic/layout.html)-->
+<div class="needyou-subpage portfolio-detail-page">
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap");
+    .portfolio-detail-page { --black:#000; --cream:#f5f1eb; --brown:#8b6b4c; --ink:#1d1a17; --muted:#72685f; --line:rgba(0,0,0,.12); font-family:"Noto Sans KR",sans-serif; color:var(--ink); background:var(--cream); }
+    .portfolio-detail-page * { box-sizing:border-box; }
+    .pd-inner { width:min(1180px, calc(100% - 40px)); margin:0 auto; }
+    .pd-hero { padding:150px 0 80px; background:var(--black); color:#fff; }
+    .pd-hero__back { display:block; width:fit-content; margin-bottom:40px; color:rgba(255,255,255,.56); font-size:13px; font-weight:600; text-decoration:none; transition:color .2s; }
+    .pd-hero__back:hover { color:#fff; text-decoration:none; }
+    .pd-hero__back::before { content:"← "; }
+    .pd-hero__title { font-family:"Noto Sans KR",sans-serif; font-size:clamp(40px,6vw,72px); font-weight:800; line-height:1.15; margin:0 0 20px; }
+    .pd-hero__meta { display:flex; align-items:center; gap:14px; }
+    .pd-hero__tag { display:inline-block; padding:5px 11px; border:1px solid rgba(255,255,255,.36); font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; }
+    .pd-hero__brand { font-family:"Cormorant Garamond",serif; font-size:20px; color:rgba(255,255,255,.56); }
+    .pd-body { padding:80px 0 100px; }
+    .pd-grid { display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:start; }
+    .pd-main-img { aspect-ratio:4/3; overflow:hidden; background:#222; }
+    .pd-main-img img { width:100%; height:100%; object-fit:cover; }
+    .pd-about { display:flex; flex-direction:column; }
+    .pd-about__label { font-family:"Cormorant Garamond",serif; font-size:13px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--brown); margin-bottom:20px; }
+    .pd-info-table { width:100%; border-collapse:collapse; }
+    .pd-info-table tr { border-bottom:1px solid var(--line); }
+    .pd-info-table tr:first-child { border-top:1px solid var(--line); }
+    .pd-info-table th { width:110px; padding:14px 0; font-size:13px; font-weight:700; color:var(--muted); text-align:left; vertical-align:top; }
+    .pd-info-table td { padding:14px 0; font-size:14px; line-height:1.7; word-break:keep-all; }
+    .pd-stat-row { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:28px; }
+    .pd-stat { padding:20px 16px; background:#fff; border:1px solid var(--line); text-align:center; }
+    .pd-stat strong { display:block; font-family:"Cormorant Garamond",serif; font-size:36px; font-weight:700; color:var(--brown); line-height:1; }
+    .pd-stat span { display:block; margin-top:6px; font-size:12px; color:var(--muted); }
+    .pd-captures { margin-top:72px; padding-top:72px; border-top:1px solid var(--line); }
+    .pd-section-label { font-family:"Cormorant Garamond",serif; font-size:38px; font-weight:700; margin:0 0 40px; }
+    .pd-capture-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; }
+    .pd-capture-item { aspect-ratio:3/4; overflow:hidden; cursor:pointer; background:#e0d8d0; position:relative; }
+    .pd-capture-item img { width:100%; height:100%; object-fit:cover; transition:transform .4s ease; }
+    .pd-capture-item:hover img { transform:scale(1.05); }
+    .pd-capture-item .cap-overlay { position:absolute; inset:0; background:rgba(0,0,0,0); display:flex; align-items:center; justify-content:center; transition:background .3s; }
+    .pd-capture-item:hover .cap-overlay { background:rgba(0,0,0,.28); }
+    .pd-capture-item .cap-overlay::after { content:"⊕"; color:#fff; font-size:28px; opacity:0; transition:opacity .3s; }
+    .pd-capture-item:hover .cap-overlay::after { opacity:1; }
+    .pd-capture-placeholder { width:100%; height:100%; display:flex; align-items:center; justify-content:center; font-size:12px; color:rgba(0,0,0,.3); }
+    .pd-graph { margin-top:72px; padding-top:72px; border-top:1px solid var(--line); }
+    .pd-graph-img { width:100%; background:#fff; border:1px solid var(--line); }
+    .pd-graph-placeholder { padding:80px 40px; text-align:center; color:var(--muted); font-size:14px; }
+    .pd-lightbox { display:none; position:fixed; inset:0; z-index:200; background:rgba(0,0,0,.9); align-items:center; justify-content:center; }
+    .pd-lightbox.is-open { display:flex; }
+    .pd-lightbox__img { max-width:90vw; max-height:90vh; object-fit:contain; }
+    .pd-lightbox__close { position:absolute; top:24px; right:28px; background:none; border:none; color:#fff; font-size:32px; cursor:pointer; line-height:1; }
+    .pd-lightbox__prev, .pd-lightbox__next { position:absolute; top:50%; transform:translateY(-50%); background:rgba(255,255,255,.12); border:none; color:#fff; font-size:24px; padding:16px 20px; cursor:pointer; }
+    .pd-lightbox__prev { left:20px; }
+    .pd-lightbox__next { right:20px; }
+    .pd-nav { margin-top:72px; padding-top:40px; border-top:1px solid var(--line); display:flex; justify-content:space-between; }
+    .pd-nav a { display:inline-flex; align-items:center; gap:8px; font-size:14px; font-weight:700; color:var(--ink); }
+    .pd-nav a:hover { color:var(--brown); text-decoration:none; }
+    @media (max-width:1024px) { .pd-capture-grid { grid-template-columns:repeat(3,1fr); } }
+    @media (max-width:768px) { .pd-inner { width:min(100% - 28px,1180px); } .pd-hero { padding:110px 0 60px; } .pd-grid { grid-template-columns:1fr; gap:36px; } .pd-capture-grid { grid-template-columns:repeat(2,1fr); } .pd-section-label { font-size:30px; } }
+  </style>
+
+  <section class="pd-hero">
+    <div class="pd-inner">
+      <a href="/layout/basic/portfolio.html" class="pd-hero__back">포트폴리오 목록으로</a>
+      <h1 class="pd-hero__title">인디에어</h1>
+      <div class="pd-hero__meta">
+        <div class="pd-hero__tag">Home</div>
+        <div class="pd-hero__brand">Indie Air · 홈 / 침구</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pd-body">
+    <div class="pd-inner">
+      <div class="pd-grid">
+        <div class="pd-main-img">
+          <img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?q=85&w=1200&auto=format&fit=crop" alt="인디에어 제품 대표 이미지" />
+        </div>
+        <div class="pd-about">
+          <div class="pd-about__label">About</div>
+          <table class="pd-info-table">
+            <tr><th>브랜드</th><td>인디에어</td></tr>
+            <tr><th>카테고리</th><td>홈 / 침구</td></tr>
+            <tr><th>진행 채널</th><td>윤자네, 제니마망, 도다미네, 호하우스, 바이미룸, 미니멀 써니, 오로리</td></tr>
+            <tr><th>참여 채널 수</th><td>총 7개 채널</td></tr>
+          </table>
+          <div class="pd-stat-row">
+            <div class="pd-stat"><strong>7+</strong><span>확정 채널</span></div>
+            <div class="pd-stat"><strong>—</strong><span>총 진행 회차</span></div>
+            <div class="pd-stat"><strong>—</strong><span>누적 매출</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pd-captures">
+        <h2 class="pd-section-label">Instagram Captures</h2>
+        <div class="pd-capture-grid" id="captureGrid">
+          <div class="pd-capture-item" data-index="0"><div class="pd-capture-placeholder">캡처 이미지 1</div><div class="cap-overlay"></div></div>
+          <div class="pd-capture-item" data-index="1"><div class="pd-capture-placeholder">캡처 이미지 2</div><div class="cap-overlay"></div></div>
+          <div class="pd-capture-item" data-index="2"><div class="pd-capture-placeholder">캡처 이미지 3</div><div class="cap-overlay"></div></div>
+          <div class="pd-capture-item" data-index="3"><div class="pd-capture-placeholder">캡처 이미지 4</div><div class="cap-overlay"></div></div>
+          <div class="pd-capture-item" data-index="4"><div class="pd-capture-placeholder">캡처 이미지 5</div><div class="cap-overlay"></div></div>
+          <div class="pd-capture-item" data-index="5"><div class="pd-capture-placeholder">캡처 이미지 6</div><div class="cap-overlay"></div></div>
+          <div class="pd-capture-item" data-index="6"><div class="pd-capture-placeholder">캡처 이미지 7</div><div class="cap-overlay"></div></div>
+          <div class="pd-capture-item" data-index="7"><div class="pd-capture-placeholder">캡처 이미지 8</div><div class="cap-overlay"></div></div>
+        </div>
+      </div>
+
+      <div class="pd-graph">
+        <h2 class="pd-section-label">Performance</h2>
+        <div class="pd-graph-img">
+          <div class="pd-graph-placeholder">실적 그래프 이미지 (자료 수령 후 반영)</div>
+        </div>
+      </div>
+
+      <div class="pd-nav">
+        <a href="/layout/basic/portfolio-detail.html">← 리젠스</a>
+        <a href="/layout/basic/portfolio-ba-pool.html">바 풀 →</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="pd-lightbox" id="lightbox" role="dialog" aria-modal="true">
+    <button class="pd-lightbox__close" id="lightboxClose" aria-label="닫기">×</button>
+    <button class="pd-lightbox__prev" id="lightboxPrev" aria-label="이전">‹</button>
+    <img class="pd-lightbox__img" id="lightboxImg" src="" alt="" />
+    <button class="pd-lightbox__next" id="lightboxNext" aria-label="다음">›</button>
+  </div>
+
+  <script>
+    (function () {
+      var items = Array.from(document.querySelectorAll('.pd-capture-item'));
+      var lightbox = document.getElementById('lightbox');
+      var lightboxImg = document.getElementById('lightboxImg');
+      var current = 0;
+      function getSrc(item) { var img = item.querySelector('img'); return img ? img.src : null; }
+      function open(idx) { var src = getSrc(items[idx]); if (!src) return; current = idx; lightboxImg.src = src; lightbox.classList.add('is-open'); document.body.style.overflow = 'hidden'; }
+      function close() { lightbox.classList.remove('is-open'); document.body.style.overflow = ''; }
+      function move(dir) { var next = (current + dir + items.length) % items.length; while (!getSrc(items[next]) && next !== current) { next = (next + dir + items.length) % items.length; } if (getSrc(items[next])) open(next); }
+      items.forEach(function (item) { item.addEventListener('click', function () { open(parseInt(item.dataset.index)); }); });
+      document.getElementById('lightboxClose').addEventListener('click', close);
+      document.getElementById('lightboxPrev').addEventListener('click', function () { move(-1); });
+      document.getElementById('lightboxNext').addEventListener('click', function () { move(1); });
+      lightbox.addEventListener('click', function (e) { if (e.target === lightbox) close(); });
+      document.addEventListener('keydown', function (e) { if (!lightbox.classList.contains('is-open')) return; if (e.key === 'Escape') close(); if (e.key === 'ArrowLeft') move(-1); if (e.key === 'ArrowRight') move(1); });
+    })();
+  </script>
+</div>

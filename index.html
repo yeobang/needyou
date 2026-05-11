@@ -1,5 +1,4 @@
-﻿<!--@layout(/layout/basic/main.html)-->
-<!doctype html>
+﻿<!doctype html>
 <html lang="ko">
 <head>
   <meta charset="utf-8">
@@ -13,15 +12,15 @@
 
   <style>
     :root {
-      --black: #000000;
-      --cream: #f5f1eb;
+      --black:      #000000;
+      --cream:      #f5f1eb;
       --cream-dark: #e6ddd2;
-      --brown: #8b6b4c;
+      --brown:      #8b6b4c;
       --brown-dark: #5d4631;
-      --ink: #1d1a17;
-      --muted: #72685f;
-      --line: rgba(0, 0, 0, .12);
-      --white: #ffffff;
+      --ink:        #000000;
+      --muted:      #6b6257;
+      --line:       rgba(0, 0, 0, .10);
+      --white:      #ffffff;
       --serif: "Cormorant Garamond", Georgia, serif;
       --sans: "Noto Sans KR", "Pretendard", "Malgun Gothic", sans-serif;
     }
@@ -41,25 +40,24 @@
     img { max-width: 100%; display: block; }
     button { font: inherit; }
 
+    /* ── Header ── */
     .site-header {
       position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
+      top: 0; left: 0; right: 0;
       z-index: 50;
-      border-bottom: 1px solid rgba(255, 255, 255, .16);
+      border-bottom: 1px solid transparent;
       color: var(--white);
-      transition: background .25s ease, color .25s ease, border-color .25s ease;
+      transition: background .3s ease, color .3s ease, border-color .3s ease;
     }
     .site-header.is-solid {
-      background: rgba(245, 241, 235, .94);
+      background: rgba(245, 241, 235, .96);
       color: var(--black);
       border-color: var(--line);
-      backdrop-filter: blur(14px);
+      backdrop-filter: blur(12px);
     }
     .site-header__inner {
-      width: min(1180px, calc(100% - 40px));
-      height: 78px;
+      width: min(1120px, calc(100% - 48px));
+      height: 72px;
       margin: 0 auto;
       display: flex;
       align-items: center;
@@ -68,37 +66,40 @@
     }
     .brand-logo {
       font-family: var(--serif);
-      font-size: 28px;
+      font-size: 26px;
       font-weight: 700;
       line-height: 1;
-      letter-spacing: 0;
+      letter-spacing: .02em;
     }
     .brand-logo span {
       display: block;
       margin-top: 4px;
       font-family: var(--sans);
-      font-size: 11px;
-      font-weight: 600;
-      color: currentColor;
-      opacity: .76;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      opacity: .65;
     }
     .nav {
       display: flex;
       align-items: center;
-      gap: 30px;
-      font-size: 15px;
+      gap: 36px;
+      font-size: 14px;
       font-weight: 600;
+      letter-spacing: .03em;
     }
     .nav a {
       position: relative;
-      padding: 8px 0;
+      padding: 6px 0;
+      opacity: .85;
+      transition: opacity .2s;
     }
+    .nav a:hover { opacity: 1; }
     .nav a::after {
       content: "";
       position: absolute;
-      left: 0;
-      right: 0;
-      bottom: 2px;
+      left: 0; right: 0; bottom: 0;
       height: 1px;
       background: currentColor;
       transform: scaleX(0);
@@ -108,497 +109,593 @@
     .nav a:hover::after { transform: scaleX(1); transform-origin: left; }
     .menu-toggle {
       display: none;
-      width: 42px;
-      height: 42px;
+      width: 40px; height: 40px;
       border: 1px solid currentColor;
       background: transparent;
       color: inherit;
       align-items: center;
       justify-content: center;
+      cursor: pointer;
     }
     .menu-toggle span,
     .menu-toggle span::before,
     .menu-toggle span::after {
       content: "";
       display: block;
-      width: 18px;
-      height: 1px;
+      width: 16px; height: 1px;
       background: currentColor;
       transition: transform .25s ease;
     }
-    .menu-toggle span::before { transform: translateY(-6px); }
-    .menu-toggle span::after { transform: translateY(5px); }
+    .menu-toggle span::before { transform: translateY(-5px); }
+    .menu-toggle span::after  { transform: translateY(4px); }
 
+    /* ── Hero ── */
     .hero {
-      min-height: 92vh;
+      min-height: 94vh;
       position: relative;
       display: flex;
-      align-items: flex-end;
+      align-items: center;
       overflow: hidden;
       color: var(--white);
       background:
-        linear-gradient(90deg, rgba(0, 0, 0, .74), rgba(0, 0, 0, .42) 44%, rgba(0, 0, 0, .1)),
+        linear-gradient(160deg, rgba(0,0,0,.72) 0%, rgba(0,0,0,.38) 55%, rgba(0,0,0,.15) 100%),
         url("https://images.unsplash.com/photo-1524758631624-e2822e304c36?q=85&w=2200&auto=format&fit=crop") center/cover;
     }
     .hero::after {
       content: "";
       position: absolute;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      height: 180px;
-      background: linear-gradient(0deg, var(--cream), rgba(245, 241, 235, 0));
+      left: 0; right: 0; bottom: 0;
+      height: 200px;
+      background: linear-gradient(0deg, rgba(255,255,255,.12), transparent);
+      pointer-events: none;
     }
     .hero__inner {
       position: relative;
       z-index: 1;
-      width: min(1180px, calc(100% - 40px));
+      width: min(1120px, calc(100% - 48px));
       margin: 0 auto;
-      padding: 170px 0 132px;
+      padding: 160px 0 120px;
     }
     .eyebrow {
-      margin: 0 0 18px;
-      color: var(--cream-dark);
-      font-family: var(--serif);
-      font-size: clamp(19px, 2vw, 28px);
+      display: inline-block;
+      margin: 0 0 20px;
+      padding: 6px 14px;
+      border: 1px solid rgba(255,255,255,.35);
+      color: rgba(255,255,255,.9);
+      font-family: var(--sans);
+      font-size: 12px;
       font-weight: 600;
+      letter-spacing: .14em;
+      text-transform: uppercase;
     }
     .hero h1 {
-      max-width: 760px;
+      max-width: 680px;
       margin: 0;
       color: var(--white);
-      font-family: var(--serif);
-      font-size: clamp(54px, 8vw, 118px);
-      font-weight: 700;
-      line-height: .88;
-      letter-spacing: 0;
+      font-family: var(--sans);
+      font-size: clamp(36px, 5.2vw, 72px);
+      font-weight: 800;
+      line-height: 1.18;
+      letter-spacing: -.02em;
+      word-break: keep-all;
     }
     .hero__copy {
-      max-width: 620px;
-      margin: 28px 0 0;
-      color: rgba(255, 255, 255, .86);
-      font-size: clamp(17px, 1.6vw, 21px);
-      line-height: 1.8;
+      max-width: 520px;
+      margin: 24px 0 0;
+      color: rgba(255,255,255,.78);
+      font-size: clamp(15px, 1.4vw, 17px);
+      line-height: 1.9;
       word-break: keep-all;
     }
     .hero__actions {
       display: flex;
       gap: 12px;
       flex-wrap: wrap;
-      margin-top: 42px;
+      margin-top: 44px;
     }
     .btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
       min-height: 50px;
-      padding: 0 24px;
+      padding: 0 28px;
       border: 1px solid var(--black);
       background: var(--black);
       color: var(--white);
+      font-size: 14px;
       font-weight: 700;
-      transition: background .2s ease, color .2s ease, border-color .2s ease, transform .2s ease;
+      letter-spacing: .04em;
+      transition: background .2s, color .2s, border-color .2s, transform .2s;
     }
     .btn:hover { transform: translateY(-2px); }
     .btn--light {
-      border-color: rgba(255, 255, 255, .8);
-      background: rgba(255, 255, 255, .08);
+      border-color: rgba(255,255,255,.7);
+      background: transparent;
       color: var(--white);
     }
     .btn--brown {
       border-color: var(--brown);
       background: var(--brown);
+      color: var(--white);
     }
 
+    /* ── Sections ── */
     .section {
-      padding: 112px 0;
-      background: var(--cream);
+      padding: 120px 0;
+      background: var(--cream);   /* warm beige — 감성 */
     }
     .section--white { background: var(--white); }
     .section--black {
-      background: var(--black);
+      background: var(--black);   /* pure black — 신뢰 */
       color: var(--white);
     }
     .section__inner {
-      width: min(1180px, calc(100% - 40px));
+      width: min(1120px, calc(100% - 48px));
       margin: 0 auto;
     }
+
+    /* Section header: vertical stack — no more 2-col offset */
     .section-head {
-      display: grid;
-      grid-template-columns: minmax(180px, 300px) 1fr;
-      gap: 60px;
-      align-items: end;
-      margin-bottom: 54px;
+      margin-bottom: 64px;
     }
     .section-label {
+      display: block;
+      margin-bottom: 16px;
       color: var(--brown);
       font-family: var(--serif);
-      font-size: 22px;
+      font-size: 13px;
       font-weight: 700;
+      letter-spacing: .18em;
+      text-transform: uppercase;
     }
+    .section--black .section-label { color: rgba(255,255,255,.5); }
     .section-title {
       margin: 0;
       font-family: var(--sans);
-      font-size: clamp(42px, 5.8vw, 76px);
-      line-height: 1.12;
+      font-size: clamp(28px, 3.6vw, 48px);
+      line-height: 1.2;
       font-weight: 800;
       color: inherit;
       word-break: keep-all;
+      letter-spacing: -.02em;
     }
     .section-desc {
-      max-width: 680px;
-      margin: 22px 0 0;
+      max-width: 580px;
+      margin: 18px 0 0;
       color: var(--muted);
-      font-size: 18px;
-      line-height: 1.85;
+      font-size: 16px;
+      line-height: 1.9;
       word-break: keep-all;
     }
-    .section--black .section-desc { color: rgba(255,255,255,.72); }
+    .section--black .section-desc { color: rgba(255,255,255,.62); }
 
+    /* ── About ── */
     .intro-grid {
       display: grid;
-      grid-template-columns: 1.08fr .92fr;
-      gap: 58px;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
       align-items: stretch;
     }
     .intro-image {
-      min-height: 520px;
+      min-height: 540px;
       background: url("https://images.unsplash.com/photo-1556761175-4b46a572b786?q=85&w=1600&auto=format&fit=crop") center/cover;
     }
     .intro-panel {
       display: flex;
       flex-direction: column;
       justify-content: center;
-      padding: 54px;
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,.52);
+      padding: 60px 56px;
+      background: var(--cream);
     }
     .intro-panel p {
-      margin: 0 0 18px;
+      margin: 0 0 20px;
       color: var(--muted);
-      font-size: 17px;
-      line-height: 1.85;
+      font-size: 16px;
+      line-height: 1.95;
       word-break: keep-all;
     }
-    .intro-panel strong { color: var(--ink); }
+    .intro-panel p:last-child { margin-bottom: 0; }
+    .intro-panel strong { color: var(--ink); font-weight: 700; }
 
+    /* ── Process ── */
     .flow {
       display: grid;
       grid-template-columns: repeat(5, 1fr);
-      border-top: 1px solid var(--line);
-      border-left: 1px solid var(--line);
+      gap: 16px;
     }
     .flow-card {
-      min-height: 250px;
-      padding: 28px 24px;
-      border-right: 1px solid var(--line);
-      border-bottom: 1px solid var(--line);
-      background: rgba(255,255,255,.38);
+      padding: 32px 26px 36px;
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-top: 3px solid transparent;
+      position: relative;
+      transition: border-top-color .25s ease, box-shadow .25s ease, transform .25s ease;
+    }
+    .flow-card:hover {
+      border-top-color: var(--brown);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, .08);
+      transform: translateY(-4px);
     }
     .flow-card__num {
+      display: inline-block;
+      margin-bottom: 24px;
       color: var(--brown);
       font-family: var(--serif);
-      font-size: 34px;
+      font-size: 30px;
       font-weight: 700;
     }
     .flow-card h3 {
-      margin: 34px 0 12px;
-      font-size: 21px;
-      line-height: 1.35;
+      margin: 0 0 12px;
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 1.45;
+      color: var(--ink);
     }
     .flow-card p {
       margin: 0;
       color: var(--muted);
-      font-size: 15px;
-      line-height: 1.75;
+      font-size: 13.5px;
+      line-height: 1.8;
       word-break: keep-all;
     }
 
+    /* ── Portfolio Marquee ── */
+    .portfolio-marquee {
+      overflow: hidden;
+      position: relative;
+    }
+    .portfolio-marquee::before,
+    .portfolio-marquee::after {
+      content: "";
+      position: absolute;
+      top: 0; bottom: 0;
+      width: 100px;
+      z-index: 1;
+      pointer-events: none;
+    }
+    .portfolio-marquee::before { left: 0; background: linear-gradient(to right, #111, transparent); }
+    .portfolio-marquee::after  { right: 0; background: linear-gradient(to left, #111, transparent); }
     .portfolio-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
+      display: flex;
+      width: max-content;
+      animation: portfolioScroll 34s linear infinite;
+    }
+    .portfolio-marquee:hover .portfolio-grid { animation-play-state: paused; }
+    @keyframes portfolioScroll {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
     }
     .portfolio-card {
-      min-height: 360px;
+      flex: 0 0 300px;
+      height: 400px;
+      margin-right: 16px;
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
       position: relative;
       overflow: hidden;
-      padding: 28px;
+      padding: 24px 22px;
       color: var(--white);
-      background: #222;
+      background: #1a1a1a;
+    }
+    .portfolio-card .card-link {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
     }
     .portfolio-card::before {
       content: "";
       position: absolute;
       inset: 0;
       background: var(--image) center/cover;
-      transform: scale(1);
       transition: transform .6s ease;
     }
     .portfolio-card::after {
       content: "";
       position: absolute;
       inset: 0;
-      background: linear-gradient(0deg, rgba(0,0,0,.78), rgba(0,0,0,.1));
+      background: linear-gradient(0deg, rgba(0,0,0,.82) 0%, rgba(0,0,0,.12) 60%);
     }
     .portfolio-card:hover::before { transform: scale(1.06); }
-    .portfolio-card > * {
-      position: relative;
-      z-index: 1;
-    }
+    .portfolio-card > * { position: relative; z-index: 1; }
     .portfolio-card .tag {
       align-self: flex-start;
-      margin-bottom: 18px;
-      padding: 7px 10px;
-      border: 1px solid rgba(255,255,255,.46);
-      font-size: 12px;
-      font-weight: 700;
-      color: rgba(255,255,255,.88);
+      margin-bottom: 14px;
+      padding: 5px 10px;
+      border: 1px solid rgba(255,255,255,.38);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.82);
     }
     .portfolio-card h3 {
-      margin: 0 0 10px;
+      margin: 0 0 8px;
       color: var(--white);
-      font-size: 25px;
-      line-height: 1.25;
+      font-size: 22px;
+      font-weight: 700;
+      line-height: 1.3;
     }
     .portfolio-card p {
       margin: 0;
-      color: rgba(255,255,255,.76);
-      font-size: 14px;
-      line-height: 1.65;
+      color: rgba(255,255,255,.68);
+      font-size: 13px;
+      line-height: 1.6;
     }
 
+    /* ── Case (instagram) ── */
     .case-layout {
       display: grid;
-      grid-template-columns: .9fr 1.1fr;
-      gap: 44px;
+      grid-template-columns: .85fr 1.15fr;
+      gap: 48px;
       align-items: center;
-      margin-top: 58px;
+      margin-top: 64px;
+      padding-top: 64px;
+      border-top: 1px solid rgba(255,255,255,.1);
     }
     .instagram-frame {
       overflow: hidden;
-      border: 2px solid var(--black);
-      background: var(--white);
-      color: var(--black);
+      border: 1px solid rgba(255,255,255,.15);
+      background: rgba(255,255,255,.04);
     }
     .instagram-top {
       display: flex;
       align-items: center;
       gap: 12px;
-      padding: 18px;
-      border-bottom: 1px solid var(--line);
-      font-weight: 800;
+      padding: 16px 20px;
+      border-bottom: 1px solid rgba(255,255,255,.1);
+      font-size: 14px;
+      font-weight: 700;
     }
     .avatar {
-      width: 36px;
-      height: 36px;
+      width: 32px; height: 32px;
       border-radius: 50%;
-      background: var(--cream-dark);
+      background: rgba(255,255,255,.18);
     }
     .instagram-image {
-      aspect-ratio: 1 / .78;
+      aspect-ratio: 1 / .75;
       background: url("https://images.unsplash.com/photo-1555041469-a586c61ea9bc?q=85&w=1400&auto=format&fit=crop") center/cover;
     }
     .instagram-meta {
-      padding: 18px;
-      font-size: 14px;
+      padding: 16px 20px;
+      font-size: 13px;
       line-height: 1.7;
+      color: rgba(255,255,255,.65);
     }
-    .case-info {
-      display: grid;
-      gap: 14px;
-    }
+    .case-info { display: grid; }
     .case-row {
       display: grid;
-      grid-template-columns: 120px 1fr;
-      gap: 20px;
-      padding: 18px 0;
-      border-bottom: 1px solid rgba(255,255,255,.18);
+      grid-template-columns: 110px 1fr;
+      gap: 16px;
+      padding: 16px 0;
+      border-bottom: 1px solid rgba(255,255,255,.1);
     }
     .case-row span {
-      color: rgba(255,255,255,.55);
-      font-family: var(--serif);
-      font-size: 21px;
-      font-weight: 700;
+      color: rgba(255,255,255,.42);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      padding-top: 3px;
     }
     .case-row strong {
       color: var(--white);
-      font-size: 18px;
+      font-size: 15px;
+      font-weight: 500;
       line-height: 1.6;
     }
 
+    /* ── Reviews Marquee ── */
+    .review-marquee {
+      overflow: hidden;
+      position: relative;
+    }
+    .review-marquee::before,
+    .review-marquee::after {
+      content: "";
+      position: absolute;
+      top: 0; bottom: 0;
+      width: 100px;
+      z-index: 1;
+      pointer-events: none;
+    }
+    .review-marquee::before { left: 0; background: linear-gradient(to right, var(--cream), transparent); }
+    .review-marquee::after  { right: 0; background: linear-gradient(to left, var(--cream), transparent); }
+    .review-track {
+      display: flex;
+      width: max-content;
+      animation: reviewScroll 38s linear infinite;
+    }
+    .review-marquee:hover .review-track { animation-play-state: paused; }
+    @keyframes reviewScroll {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .review-card {
+      flex: 0 0 340px;
+      margin-right: 16px;
+      padding: 30px 28px;
+      background: var(--cream);
+      border: 1px solid var(--cream-dark);
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .review-stars { color: var(--brown); font-size: 12px; letter-spacing: 4px; }
+    .review-card p { margin: 0; font-size: 14px; line-height: 1.9; color: var(--ink); flex: 1; }
+    .review-author { font-size: 12px; font-weight: 700; color: var(--muted); }
+
+    /* ── Stats ── */
     .stats {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-      margin-top: 44px;
+      gap: 0;
+      margin-top: 0;
+      border: 1px solid var(--line);
     }
     .stat {
-      padding: 34px;
-      border: 1px solid var(--line);
-      background: var(--cream);
+      padding: 40px 36px;
+      border-right: 1px solid var(--line);
     }
+    .stat:last-child { border-right: none; }
     .stat strong {
       display: block;
-      margin-bottom: 8px;
+      margin-bottom: 10px;
       color: var(--brown);
       font-family: var(--serif);
-      font-size: 46px;
+      font-size: 52px;
+      font-weight: 700;
       line-height: 1;
     }
-    .stat span {
-      color: var(--muted);
-      font-size: 15px;
-    }
+    .stat span { color: var(--muted); font-size: 14px; }
 
+    /* ── Contact ── */
     .contact-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 24px;
+      gap: 0;
+      border: 1px solid var(--line);
     }
     .contact-card {
-      min-height: 360px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      padding: 42px;
-      border: 1px solid var(--line);
-      background: var(--white);
+      padding: 52px 48px;
+      border-right: 1px solid var(--line);
     }
+    .contact-card:last-child { border-right: none; }
     .contact-card h3 {
-      margin: 0 0 18px;
+      margin: 0 0 16px;
       font-family: var(--sans);
-      font-size: 34px;
-      line-height: 1.25;
+      font-size: 28px;
+      line-height: 1.3;
       font-weight: 800;
     }
     .contact-card p {
       margin: 0;
       color: var(--muted);
-      font-size: 17px;
-      line-height: 1.8;
+      font-size: 15px;
+      line-height: 1.85;
       word-break: keep-all;
     }
     .contact-list {
       display: grid;
-      gap: 10px;
-      margin: 30px 0;
+      gap: 9px;
+      margin: 28px 0;
       padding: 0;
       color: var(--muted);
-      font-size: 15px;
+      font-size: 14px;
     }
     .contact-list li {
       display: flex;
       gap: 10px;
-      align-items: center;
+      align-items: flex-start;
       list-style: none;
     }
     .contact-list li::before {
       content: "";
-      width: 5px;
-      height: 5px;
+      flex-shrink: 0;
+      width: 4px; height: 4px;
+      margin-top: 8px;
+      border-radius: 50%;
       background: var(--brown);
     }
 
+    /* ── Footer ── */
     .footer {
-      padding: 54px 0;
+      padding: 60px 0;
       background: var(--black);
-      color: rgba(255,255,255,.7);
+      color: rgba(255,255,255,.6);
     }
     .footer__inner {
-      width: min(1180px, calc(100% - 40px));
+      width: min(1120px, calc(100% - 48px));
       margin: 0 auto;
       display: flex;
       justify-content: space-between;
-      gap: 30px;
       align-items: flex-end;
+      gap: 30px;
     }
     .footer strong {
       display: block;
-      margin-bottom: 12px;
+      margin-bottom: 14px;
       color: var(--white);
       font-family: var(--serif);
-      font-size: 30px;
+      font-size: 28px;
+      font-weight: 700;
     }
+    .footer__sns {
+      display: flex;
+      gap: 18px;
+      margin-top: 16px;
+    }
+    .footer__sns a {
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: .06em;
+      color: rgba(255,255,255,.5);
+      transition: color .2s;
+    }
+    .footer__sns a:hover { color: #fff; }
     .footer p {
       margin: 0;
       font-size: 13px;
-      line-height: 1.7;
+      line-height: 1.75;
     }
 
+    /* ── Reveal animation ── */
     [data-reveal] {
       opacity: 0;
-      transform: translateY(28px);
+      transform: translateY(24px);
       transition: opacity .7s ease, transform .7s ease;
     }
     [data-reveal].is-visible {
       opacity: 1;
-      transform: translateY(0);
+      transform: none;
     }
 
+    /* ── Responsive ── */
     @media (max-width: 1024px) {
-      .flow { grid-template-columns: repeat(2, 1fr); }
-      .portfolio-grid { grid-template-columns: repeat(2, 1fr); }
+      .flow { grid-template-columns: repeat(3, 1fr); }
       .intro-grid,
       .case-layout { grid-template-columns: 1fr; }
-      .intro-image { min-height: 420px; }
+      .intro-image { min-height: 400px; }
     }
 
     @media (max-width: 760px) {
-      .site-header__inner {
-        width: min(100% - 28px, 1180px);
-        height: 68px;
-      }
-      .brand-logo { font-size: 24px; }
+      .site-header__inner { width: calc(100% - 32px); height: 64px; }
+      .brand-logo { font-size: 22px; }
       .menu-toggle { display: inline-flex; }
       .nav {
         position: fixed;
-        top: 68px;
-        left: 0;
-        right: 0;
+        top: 64px; left: 0; right: 0;
         display: none;
-        padding: 26px 20px 32px;
-        background: var(--cream);
+        padding: 28px 20px 36px;
+        background: var(--white);
         color: var(--black);
         border-bottom: 1px solid var(--line);
         flex-direction: column;
         align-items: flex-start;
-        gap: 18px;
+        gap: 20px;
+        font-size: 16px;
       }
       .nav.is-open { display: flex; }
-      .hero { min-height: 86vh; }
-      .hero__inner {
-        width: min(100% - 28px, 1180px);
-        padding: 130px 0 90px;
-      }
-      .hero h1 { font-size: clamp(48px, 16vw, 70px); }
-      .hero__copy { font-size: 16px; }
-      .section { padding: 78px 0; }
-      .section__inner { width: min(100% - 28px, 1180px); }
-      .section-head {
-        grid-template-columns: 1fr;
-        gap: 14px;
-        margin-bottom: 36px;
-      }
-      .intro-panel { padding: 28px; }
-      .flow,
-      .portfolio-grid,
-      .stats,
+      .hero { min-height: 88vh; align-items: flex-end; }
+      .hero__inner { width: calc(100% - 32px); padding: 120px 0 80px; }
+      .hero h1 { font-size: clamp(34px, 10vw, 52px); }
+      .section { padding: 80px 0; }
+      .section__inner { width: calc(100% - 32px); }
+      .section-head { margin-bottom: 40px; }
+      .intro-panel { padding: 32px 28px; }
+      .flow { grid-template-columns: 1fr 1fr; }
+      .portfolio-card { flex: 0 0 250px; height: 330px; }
+      .stats { grid-template-columns: 1fr; }
+      .stat { border-right: none; border-bottom: 1px solid var(--line); }
+      .stat:last-child { border-bottom: none; }
       .contact-grid { grid-template-columns: 1fr; }
-      .portfolio-card { min-height: 330px; }
-      .case-row {
-        grid-template-columns: 1fr;
-        gap: 6px;
-      }
-      .contact-card { padding: 30px; }
-      .footer__inner {
-        width: min(100% - 28px, 1180px);
-        display: block;
-      }
-      .footer p + p { margin-top: 14px; }
+      .contact-card { padding: 36px 28px; border-right: none; border-bottom: 1px solid var(--line); }
+      .contact-card:last-child { border-bottom: none; }
+      .case-row { grid-template-columns: 80px 1fr; }
+      .footer__inner { flex-direction: column; align-items: flex-start; gap: 24px; }
     }
   </style>
 </head>
@@ -619,10 +716,10 @@
   <main id="top">
     <section class="hero">
       <div class="hero__inner" data-reveal>
-        <p class="eyebrow">Group Buying Vendor</p>
-        <h1>Products need a market. We make the route.</h1>
+        <p class="eyebrow">공동구매 전문 벤더</p>
+        <h1>제품을 단순히<br>판매하지 않습니다.</h1>
         <p class="hero__copy">
-          니드유컴퍼니는 아직 수면 위로 드러나지 않은 제품과 공급사를 발굴하고, 인스타그램 셀럽과 연결해 공동구매 성과를 만드는 전문 벤더사입니다.
+          니드유컴퍼니는 SNS 공구로 매출과 브랜드 가치를 함께 만듭니다.
         </p>
         <div class="hero__actions">
           <a class="btn btn--brown" href="/layout/basic/portfolio.html">진행 사례 보기</a>
@@ -631,25 +728,23 @@
       </div>
     </section>
 
-    <section class="section" id="about">
+    <section class="section section--white" id="about">
       <div class="section__inner">
         <div class="section-head" data-reveal>
-          <div class="section-label">About</div>
-          <div>
-            <h2 class="section-title">제품이 팔리는 구조를 설계합니다.</h2>
-            <p class="section-desc">
-              니드유는 단순히 제품을 판매하는 것이 아니라, 제품 선정부터 콘텐츠 기획, 공동구매 운영, 재구매 설계까지 전 과정을 관리합니다.
-            </p>
-          </div>
+          <span class="section-label">About</span>
+          <h2 class="section-title">제품이 팔리는 구조를<br>설계합니다.</h2>
+          <p class="section-desc">
+            니드유는 단순히 제품을 판매하는 것이 아니라, 제품 선정부터 콘텐츠 기획, 공동구매 운영, 재구매 설계까지 전 과정을 관리합니다.
+          </p>
         </div>
-        <div class="intro-grid">
-          <div class="intro-image" data-reveal></div>
-          <div class="intro-panel" data-reveal>
+        <div class="intro-grid" data-reveal>
+          <div class="intro-image"></div>
+          <div class="intro-panel">
             <p>
-              좋은 제품이 시장에서 바로 선택받는 것은 아닙니다. 니드유는 타겟 고객과 판매 채널을 먼저 분석하고, 제품의 강점이 구매 이유로 전달될 수 있도록 스토리와 운영 방식을 함께 설계합니다.
+              니드유는 단순히 제품을 판매하는 것이 아니라, 제품이 <strong>'팔리게 만드는 구조'</strong>를 설계하고 실행합니다.
             </p>
             <p>
-              인스타그램 셀럽, 브랜드, 소비자 사이의 흐름을 조율하며 단기 판매를 넘어 <strong>반복 가능한 매출 구조</strong>를 만드는 것이 니드유의 역할입니다.
+              제품 선정 단계부터 콘텐츠 기획, 판매 운영, 그리고 재구매로 이어지는 전 과정을 체계적으로 관리하며, 모든 결과는 데이터와 성과로 증명합니다.
             </p>
             <p>
               진정성 있는 협업을 바탕으로 브랜드와 셀러가 함께 성장할 수 있는 환경을 만듭니다.
@@ -659,42 +754,40 @@
       </div>
     </section>
 
-    <section class="section section--white">
+    <section class="section">
       <div class="section__inner">
         <div class="section-head" data-reveal>
-          <div class="section-label">Process</div>
-          <div>
-            <h2 class="section-title">처음부터 끝까지, 니드유가 함께합니다.</h2>
-            <p class="section-desc">
-              제품 분석, 콘텐츠 기획, 공구 실행, 운영 대응, 재공구 확장까지 공동구매의 핵심 과정을 체계적으로 관리합니다.
-            </p>
-          </div>
+          <span class="section-label">Process</span>
+          <h2 class="section-title">처음부터 끝까지,<br>니드유가 함께합니다.</h2>
+          <p class="section-desc">
+            제품 분석, 콘텐츠 기획, 공구 실행, 운영 대응, 재공구 확장까지 공동구매의 핵심 과정을 체계적으로 관리합니다.
+          </p>
         </div>
         <div class="flow">
           <article class="flow-card" data-reveal>
             <div class="flow-card__num">01</div>
             <h3>제품 분석 및 시장 검증</h3>
-            <p>타겟 고객과 경쟁 상품을 비교하고, 가격과 구성 전략까지 판매 가능성을 먼저 검증합니다.</p>
+            <p>타겟 고객 분석, 경쟁 상품 비교를 통해 가격과 구성 전략까지 판매 가능성을 먼저 검증합니다.</p>
           </article>
           <article class="flow-card" data-reveal>
             <div class="flow-card__num">02</div>
             <h3>콘텐츠 기획</h3>
-            <p>인플루언서 매칭과 핵심 판매 포인트를 정리해 구매를 이끄는 스토리를 만듭니다.</p>
+            <p>인플루언서 매칭과 핵심 판매 포인트를 정리하고, 상세페이지와 영상 방향을 설계해 '팔리는 스토리'를 만듭니다.</p>
           </article>
           <article class="flow-card" data-reveal>
             <div class="flow-card__num">03</div>
-            <h3>공동구매 실행</h3>
-            <p>인스타그램, 커뮤니티, 폐쇄몰 등 채널 특성에 맞춰 집중적인 판매 흐름을 운영합니다.</p>
+            <h3>공구 실행</h3>
+            <p>인스타, 카페, 폐쇄몰을 기반으로 동시 운영하며 실시간 반응을 바탕으로 판매 흐름을 컨트롤합니다.</p>
           </article>
           <article class="flow-card" data-reveal>
             <div class="flow-card__num">04</div>
-            <h3>운영 및 대응</h3>
-            <p>고객 반응과 이슈를 빠르게 확인하고, CS 흐름을 관리해 매출 손실을 줄입니다.</p>
+            <h3>운영 & 대응</h3>
+            <p>고객 응대와 CS 흐름을 체계적으로 관리하고, 이슈 발생 시 빠르게 대응해 매출 손실을 최소화합니다.</p>
           </article>
           <article class="flow-card" data-reveal>
             <div class="flow-card__num">05</div>
-            <h3>재공구 및 확장</h3>
-            <p>축적된 데이터를 바탕으로 재구매를 설계하고 지속 가능한 브랜드 성장을 만듭니다.</p>
+            <h3>재공구 & 확장</h3>
+            <p>데이터 분석을 통해 재구매를 설계하고, 지속 가능한 매출 구조와 브랜드 성장을 만들어갑니다.</p>
           </article>
         </div>
       </div>
@@ -703,45 +796,93 @@
     <section class="section section--black" id="portfolio">
       <div class="section__inner">
         <div class="section-head" data-reveal>
-          <div class="section-label">Portfolio</div>
-          <div>
-            <h2 class="section-title">공동구매 진행 사례</h2>
-            <p class="section-desc">
-              제품과 셀러의 접점을 설계하고, 실제 판매 흐름으로 이어진 니드유의 대표 프로젝트입니다.
-            </p>
-          </div>
+          <span class="section-label">Portfolio</span>
+          <h2 class="section-title">공동구매 진행 사례</h2>
+          <p class="section-desc">
+            제품과 셀러의 접점을 설계하고, 실제 판매 흐름으로 이어진 니드유의 대표 프로젝트입니다.
+          </p>
         </div>
-        <div class="portfolio-grid">
-          <article class="portfolio-card" style="--image:url('https://images.unsplash.com/photo-1555041469-a586c61ea9bc?q=85&w=1000&auto=format&fit=crop')" data-reveal>
-            <span class="tag">Living</span>
-            <h3>리젠스</h3>
-            <p>제니마망, 신림댁, 떠아니네, 예나홈 등 셀러 협업 진행</p>
-          </article>
-          <article class="portfolio-card" style="--image:url('https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?q=85&w=1000&auto=format&fit=crop')" data-reveal>
-            <span class="tag">Home</span>
-            <h3>인디에어</h3>
-            <p>윤자네, 도다미네, 호하우스, 바이미룸 등 채널별 공구 운영</p>
-          </article>
-          <article class="portfolio-card" style="--image:url('https://images.unsplash.com/photo-1519710164239-da123dc03ef4?q=85&w=1000&auto=format&fit=crop')" data-reveal>
-            <span class="tag">Lifestyle</span>
-            <h3>바 풀</h3>
-            <p>제니마망, 도다미네, 리빙유, 희치홈 등 타겟 셀러 매칭</p>
-          </article>
-          <article class="portfolio-card" style="--image:url('https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?q=85&w=1000&auto=format&fit=crop')" data-reveal>
-            <span class="tag">Kitchen</span>
-            <h3>오베 소창</h3>
-            <p>희치홈, 신림댁, 마마스키친, 봄주부 등 다수 셀러 진행</p>
-          </article>
-          <article class="portfolio-card" style="--image:url('https://images.unsplash.com/photo-1494438639946-1ebd1d20bf85?q=85&w=1000&auto=format&fit=crop')" data-reveal>
-            <span class="tag">Home Office</span>
-            <h3>스마트메이드 스탠드</h3>
-            <p>도다미네, 희치홈, 하이잼스, 위쓰담북 협업 진행</p>
-          </article>
-          <article class="portfolio-card" style="--image:url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=85&w=1000&auto=format&fit=crop')" data-reveal>
-            <span class="tag">Beauty</span>
-            <h3>큐모발</h3>
-            <p>도다미네, 코루비, 조유경, 듀얼홀릭, 찐하트 등 진행</p>
-          </article>
+        <div class="portfolio-marquee">
+          <div class="portfolio-grid">
+            <article class="portfolio-card" style="--image:url('https://images.unsplash.com/photo-1555041469-a586c61ea9bc?q=85&w=1000&auto=format&fit=crop')">
+              <a href="/layout/basic/portfolio-detail.html" class="card-link" aria-label="리젠스 상세 보기"></a>
+              <span class="tag">Living</span>
+              <h3>리젠스</h3>
+              <p>제니마망, 신림댁, 떠아니네, 예나홈 등 셀러 협업 진행</p>
+            </article>
+            <article class="portfolio-card" style="--image:url('https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?q=85&w=1000&auto=format&fit=crop')">
+              <a href="/layout/basic/portfolio-indie-air.html" class="card-link" aria-label="인디에어 상세 보기"></a>
+              <span class="tag">Home</span>
+              <h3>인디에어</h3>
+              <p>윤자네, 도다미네, 호하우스, 바이미룸 등 채널별 공구 운영</p>
+            </article>
+            <article class="portfolio-card" style="--image:url('https://images.unsplash.com/photo-1519710164239-da123dc03ef4?q=85&w=1000&auto=format&fit=crop')">
+              <a href="/layout/basic/portfolio-ba-pool.html" class="card-link" aria-label="바 풀 상세 보기"></a>
+              <span class="tag">Lifestyle</span>
+              <h3>바 풀</h3>
+              <p>제니마망, 도다미네, 리빙유, 희치홈 등 타겟 셀러 매칭</p>
+            </article>
+            <article class="portfolio-card" style="--image:url('https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?q=85&w=1000&auto=format&fit=crop')">
+              <a href="/layout/basic/portfolio-obe-socheang.html" class="card-link" aria-label="오베 소창 상세 보기"></a>
+              <span class="tag">Kitchen</span>
+              <h3>오베 소창</h3>
+              <p>희치홈, 신림댁, 마마스키친, 봄주부 등 다수 셀러 진행</p>
+            </article>
+            <article class="portfolio-card" style="--image:url('https://images.unsplash.com/photo-1494438639946-1ebd1d20bf85?q=85&w=1000&auto=format&fit=crop')">
+              <a href="/layout/basic/portfolio-smart-made.html" class="card-link" aria-label="스마트메이드 스탠드 상세 보기"></a>
+              <span class="tag">Home Office</span>
+              <h3>스마트메이드 스탠드</h3>
+              <p>도다미네, 희치홈, 하이잼스, 위쓰담북 협업 진행</p>
+            </article>
+            <article class="portfolio-card" style="--image:url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=85&w=1000&auto=format&fit=crop')">
+              <a href="/layout/basic/portfolio-winner-stand.html" class="card-link" aria-label="위너 독서대 상세 보기"></a>
+              <span class="tag">Study</span>
+              <h3>위너 독서대</h3>
+              <p>도다미네, 하이잼스 협업 진행</p>
+            </article>
+            <article class="portfolio-card" style="--image:url('https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?q=85&w=1000&auto=format&fit=crop')">
+              <a href="/layout/basic/portfolio-qmoval.html" class="card-link" aria-label="큐모발 상세 보기"></a>
+              <span class="tag">Beauty</span>
+              <h3>큐모발</h3>
+              <p>도다미네, 코루비, 조유경, 듀얼홀릭, 찐하트 등 진행</p>
+            </article>
+            <!-- 무한루프용 복제 -->
+            <article class="portfolio-card" style="--image:url('https://images.unsplash.com/photo-1555041469-a586c61ea9bc?q=85&w=1000&auto=format&fit=crop')" aria-hidden="true">
+              <span class="tag">Living</span>
+              <h3>리젠스</h3>
+              <p>제니마망, 신림댁, 떠아니네, 예나홈 등 셀러 협업 진행</p>
+            </article>
+            <article class="portfolio-card" style="--image:url('https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?q=85&w=1000&auto=format&fit=crop')" aria-hidden="true">
+              <span class="tag">Home</span>
+              <h3>인디에어</h3>
+              <p>윤자네, 도다미네, 호하우스, 바이미룸 등 채널별 공구 운영</p>
+            </article>
+            <article class="portfolio-card" style="--image:url('https://images.unsplash.com/photo-1519710164239-da123dc03ef4?q=85&w=1000&auto=format&fit=crop')" aria-hidden="true">
+              <span class="tag">Lifestyle</span>
+              <h3>바 풀</h3>
+              <p>제니마망, 도다미네, 리빙유, 희치홈 등 타겟 셀러 매칭</p>
+            </article>
+            <article class="portfolio-card" style="--image:url('https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?q=85&w=1000&auto=format&fit=crop')" aria-hidden="true">
+              <span class="tag">Kitchen</span>
+              <h3>오베 소창</h3>
+              <p>희치홈, 신림댁, 마마스키친, 봄주부 등 다수 셀러 진행</p>
+            </article>
+            <article class="portfolio-card" style="--image:url('https://images.unsplash.com/photo-1494438639946-1ebd1d20bf85?q=85&w=1000&auto=format&fit=crop')" aria-hidden="true">
+              <span class="tag">Home Office</span>
+              <h3>스마트메이드 스탠드</h3>
+              <p>도다미네, 희치홈, 하이잼스, 위쓰담북 협업 진행</p>
+            </article>
+            <article class="portfolio-card" style="--image:url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=85&w=1000&auto=format&fit=crop')" aria-hidden="true">
+              <span class="tag">Study</span>
+              <h3>위너 독서대</h3>
+              <p>도다미네, 하이잼스 협업 진행</p>
+            </article>
+            <article class="portfolio-card" style="--image:url('https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?q=85&w=1000&auto=format&fit=crop')" aria-hidden="true">
+              <span class="tag">Beauty</span>
+              <h3>큐모발</h3>
+              <p>도다미네, 코루비, 조유경, 듀얼홀릭, 찐하트 등 진행</p>
+            </article>
+          </div>
         </div>
 
         <div class="case-layout" data-reveal>
@@ -766,27 +907,117 @@
       </div>
     </section>
 
-    <section class="section section--white" id="partner">
+    <section class="section section--white" id="reviews">
       <div class="section__inner">
         <div class="section-head" data-reveal>
-          <div class="section-label">For Brands</div>
-          <div>
-            <h2 class="section-title">제품만 준비하세요. 판매는 니드유가 만듭니다.</h2>
-            <p class="section-desc">
-              좋은 제품을 가지고 있지만 판매에 어려움을 겪고 있다면, 니드유와 함께 새로운 공동구매 기회를 만들어보세요.
-            </p>
-          </div>
+          <span class="section-label">Reviews</span>
+          <h2 class="section-title">함께 성공 스토리를<br>만들어갑니다.</h2>
+          <p class="section-desc">셀러와 브랜드 담당자분들의 실제 협업 후기입니다.</p>
         </div>
-        <div class="stats" data-reveal>
-          <div class="stat"><strong>300+</strong><span>누적 공동구매 프로젝트</span></div>
-          <div class="stat"><strong>XX억</strong><span>누적 매출 데이터 확인 후 반영</span></div>
-          <div class="stat"><strong>XX개</strong><span>협업 브랜드 수 확인 후 반영</span></div>
+        <div class="review-marquee">
+          <div class="review-track">
+            <article class="review-card">
+              <div class="review-stars">★★★★★</div>
+              <p>"니드유는 단순한 유통 파트너가 아니라 브랜드와 셀러가 함께 성장할 수 있도록 이끄는 팀이에요. 세심한 소통과 빠른 피드백으로 판매 효율을 높여주고, 소비자 반응과 브랜드 방향성까지 함께 고민해주는 진정한 성장 파트너입니다."</p>
+              <div class="review-author">인스타그램 도\*\*네 셀러</div>
+            </article>
+            <article class="review-card">
+              <div class="review-stars">★★★★★</div>
+              <p>"공동구매 특성상 일정이 촉박하고 변수가 많은데, 그때마다 빠르게 대응해주셔서 항상 믿음이 갑니다. 진행 과정 내내 피드백이 빠르고 소통이 잘 되어 좋았어요. 앞으로도 좋은 협업 이어가고 싶습니다 :)"</p>
+              <div class="review-author">인스타그램 어\*\*이 셀러</div>
+            </article>
+            <article class="review-card">
+              <div class="review-stars">★★★★★</div>
+              <p>"공구를 여러 번 진행해봤지만, 니드유처럼 속도감 있고 피드백이 빠른 팀은 처음이었어요. 상품 선정부터 콘텐츠 기획, 세부 일정까지 꼼꼼하게 챙겨주셔서 빠듯한 상황에서도 불안하지 않았습니다."</p>
+              <div class="review-author">인스타그램 \*\*홈 셀러</div>
+            </article>
+            <article class="review-card">
+              <div class="review-stars">★★★★★</div>
+              <p>"니드유와 여러 프로젝트를 함께하며 신뢰가 깊어졌어요. 제품에 대한 경험과 지식이 풍부하시고, 언제나 끝까지 함께 고민해주시며 방향을 잡아주시는 든든한 파트너예요."</p>
+              <div class="review-author">인스타그램 \*\*댁 셀러</div>
+            </article>
+            <article class="review-card">
+              <div class="review-stars">★★★★★</div>
+              <p>"니드유컴퍼니와의 협업은 단순한 판매를 넘어 브랜드의 방향성을 함께 만들어가는 과정이었습니다. 소비자 반응을 빠르게 분석하여 실질적인 판매 전략으로 이어가는 점이 인상 깊었습니다."</p>
+              <div class="review-author">홈인테리어 브랜드 I사 담당자</div>
+            </article>
+            <article class="review-card">
+              <div class="review-stars">★★★★★</div>
+              <p>"브랜드가 가진 스토리와 제품의 가치를 소비자에게 정확히 전달해줍니다. 함께 일할수록 '브랜딩 중심 유통사'라는 말이 실감납니다."</p>
+              <div class="review-author">리빙브랜드 O사 담당자</div>
+            </article>
+            <article class="review-card">
+              <div class="review-stars">★★★★★</div>
+              <p>"니드유는 항상 데이터와 트렌드를 동시에 잡는 유통사입니다. 결과적으로 매출뿐 아니라 신규 고객 유입과 브랜드 검색량이 눈에 띄게 증가했습니다."</p>
+              <div class="review-author">리빙브랜드 L사 담당자</div>
+            </article>
+            <!-- 무한루프용 복제 -->
+            <article class="review-card">
+              <div class="review-stars">★★★★★</div>
+              <p>"니드유는 단순한 유통 파트너가 아니라 브랜드와 셀러가 함께 성장할 수 있도록 이끄는 팀이에요. 세심한 소통과 빠른 피드백으로 판매 효율을 높여주고, 소비자 반응과 브랜드 방향성까지 함께 고민해주는 진정한 성장 파트너입니다."</p>
+              <div class="review-author">인스타그램 도\*\*네 셀러</div>
+            </article>
+            <article class="review-card">
+              <div class="review-stars">★★★★★</div>
+              <p>"공동구매 특성상 일정이 촉박하고 변수가 많은데, 그때마다 빠르게 대응해주셔서 항상 믿음이 갑니다. 진행 과정 내내 피드백이 빠르고 소통이 잘 되어 좋았어요. 앞으로도 좋은 협업 이어가고 싶습니다 :)"</p>
+              <div class="review-author">인스타그램 어\*\*이 셀러</div>
+            </article>
+            <article class="review-card">
+              <div class="review-stars">★★★★★</div>
+              <p>"공구를 여러 번 진행해봤지만, 니드유처럼 속도감 있고 피드백이 빠른 팀은 처음이었어요. 상품 선정부터 콘텐츠 기획, 세부 일정까지 꼼꼼하게 챙겨주셔서 빠듯한 상황에서도 불안하지 않았습니다."</p>
+              <div class="review-author">인스타그램 \*\*홈 셀러</div>
+            </article>
+            <article class="review-card">
+              <div class="review-stars">★★★★★</div>
+              <p>"니드유와 여러 프로젝트를 함께하며 신뢰가 깊어졌어요. 제품에 대한 경험과 지식이 풍부하시고, 언제나 끝까지 함께 고민해주시며 방향을 잡아주시는 든든한 파트너예요."</p>
+              <div class="review-author">인스타그램 \*\*댁 셀러</div>
+            </article>
+            <article class="review-card">
+              <div class="review-stars">★★★★★</div>
+              <p>"니드유컴퍼니와의 협업은 단순한 판매를 넘어 브랜드의 방향성을 함께 만들어가는 과정이었습니다. 소비자 반응을 빠르게 분석하여 실질적인 판매 전략으로 이어가는 점이 인상 깊었습니다."</p>
+              <div class="review-author">홈인테리어 브랜드 I사 담당자</div>
+            </article>
+            <article class="review-card">
+              <div class="review-stars">★★★★★</div>
+              <p>"브랜드가 가진 스토리와 제품의 가치를 소비자에게 정확히 전달해줍니다. 함께 일할수록 '브랜딩 중심 유통사'라는 말이 실감납니다."</p>
+              <div class="review-author">리빙브랜드 O사 담당자</div>
+            </article>
+            <article class="review-card">
+              <div class="review-stars">★★★★★</div>
+              <p>"니드유는 항상 데이터와 트렌드를 동시에 잡는 유통사입니다. 결과적으로 매출뿐 아니라 신규 고객 유입과 브랜드 검색량이 눈에 띄게 증가했습니다."</p>
+              <div class="review-author">리빙브랜드 L사 담당자</div>
+            </article>
+          </div>
         </div>
       </div>
     </section>
 
-    <section class="section" id="creator">
+    <section class="section" id="partner">
       <div class="section__inner">
+        <div class="section-head" data-reveal>
+          <span class="section-label">Performance</span>
+          <h2 class="section-title">숫자로 증명하는<br>니드유의 성과</h2>
+          <p class="section-desc">
+            다양한 카테고리에서 검증된 운영 경험을 바탕으로, 제품의 가치를 실제 매출로 연결합니다.
+          </p>
+        </div>
+        <div class="stats" data-reveal>
+          <div class="stat"><strong>300+</strong><span>누적 공동구매 프로젝트</span></div>
+          <div class="stat"><strong>XX억</strong><span>누적 매출</span></div>
+          <div class="stat"><strong>XX개</strong><span>협업 브랜드</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <div class="section__inner">
+        <div class="section-head" data-reveal>
+          <span class="section-label">Contact</span>
+          <h2 class="section-title">지금, 니드유와<br>함께 시작하세요.</h2>
+          <p class="section-desc">
+            제품만 준비하세요. 제품 소싱부터 콘텐츠 기획, 공구 운영, 재구매 설계까지 니드유가 함께합니다.
+          </p>
+        </div>
         <div class="contact-grid">
           <article class="contact-card" data-reveal>
             <div>
@@ -822,6 +1053,10 @@
       <div>
         <strong>NEEDU COMPANY</strong>
         <p>제품 공급사와 셀럽을 연결해 공동구매 성과를 만드는 전문 벤더사</p>
+        <div class="footer__sns">
+          <a href="https://www.instagram.com/gzgz.1234/" target="_blank" rel="noopener">Instagram</a>
+          <a href="https://open.kakao.com/o/sfdCZ0dg" target="_blank" rel="noopener">Kakao</a>
+        </div>
       </div>
       <p>Copyright &copy; NEEDU COMPANY. All rights reserved.</p>
     </div>
