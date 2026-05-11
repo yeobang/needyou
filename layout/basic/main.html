@@ -1,14 +1,20 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="ko">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- PG크로스브라우징필수내용 -->
   <meta http-equiv="Cache-Control" content="no-cache" />
   <meta http-equiv="Expires" content="0" />
   <meta http-equiv="Pragma" content="no-cache" />
 
-  <title>NEEDU COMPANY</title>
+  <title>니드유: NEED YOU</title>
   <link rel="preconnect" href="https://img.echosting.cafe24.com">
+  <link rel="preload" href="/fonts/Noto-Sans-CJK-KR-Bold.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="/fonts/Noto-Sans-CJK-KR-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="/fonts/Segoe-UI-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="/fonts/Segoe-UI-Bold.woff2" as="font" type="font/woff2" crossorigin="anonymous">
 
   <!--@css(/layout/basic/css/common.css)-->
   <!--@css(/layout/basic/css/layout.css)-->
@@ -24,73 +30,114 @@
   <!--@js(/layout/basic/js/layout.js)-->
 
   <style>
-    #header {
-      background: #f5f1eb !important;
-      border-bottom: 1px solid rgba(0, 0, 0, .1);
-    }
-    #header .inner {
-      width: min(1180px, calc(100% - 40px));
-      margin: 0 auto;
-    }
-    #header .topArea {
-      display: flex !important;
-      align-items: center !important;
-      justify-content: space-between;
-      min-height: 78px;
-      padding: 0 !important;
-      margin: 0 !important;
-    }
-    #header .topArea__logo img {
-      width: 180px !important;
-      height: auto !important;
-      object-fit: contain;
-      transform: none !important;
-    }
-    #header .topArea__user,
-    #header .navigation__util,
-    #header .xans-layout-statelogoff,
-    #header .xans-layout-statelogon {
-      display: none !important;
-    }
-    .needu-navigation {
-      display: flex;
-      justify-content: flex-end;
-      padding: 0 0 22px;
-    }
-    .needu-navigation ul {
-      display: flex;
-      gap: 30px;
-      margin: 0;
-      padding: 0;
-    }
-    .needu-navigation li { list-style: none; }
-    .needu-navigation a {
-      color: #000;
-      font-size: 15px;
-      font-weight: 700;
-      text-decoration: none;
-    }
-    .needu-navigation a:hover {
-      color: #8b6b4c;
-      text-decoration: none;
-    }
-    @media (max-width: 768px) {
-      #header .inner { width: min(100% - 28px, 1180px); }
-      #header .topArea { min-height: 68px; }
-      #header .topArea__logo img { width: 140px !important; }
-      .needu-navigation { justify-content: center; padding-bottom: 16px; }
-      .needu-navigation ul {
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 12px 18px;
+      /* ✅ 헤더 배경 */
+      #header {
+        background: #fff !important;
       }
-      .needu-navigation a { font-size: 14px; }
-    }
+
+      /* ✅ 상단 구조 (로고 좌측 정렬) */
+      #header .topArea {
+        display: flex !important;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center !important;
+        padding: 16px 0 !important;
+        margin: 0 !important;
+      }
+
+      #header .topArea__logo {
+        display: block;
+        flex-shrink: 0;
+      }
+
+      /* ✅ 로고 크기 및 위치 (PC 기준) */
+      #header .topArea__logo img {
+          transform: translateY(-57px);
+          width: 320px !important;
+          height: 127px !important;
+          display: block !important;
+          object-fit: contain;
+          vertical-align: middle !important;
+          position: relative;
+          z-index: 10;
+        }
+
+      /* 로그인/장바구니 등 우측 메뉴 */
+      .topArea__user {
+        display: flex;
+        gap: 16px;
+        font-size: 14px;
+        justify-content: flex-end;
+      }
+
+      .topArea__user a {
+        color: #0f172a;
+        text-decoration: none;
+      }
+
+      .topArea__user a:hover {
+        color: #2563eb;
+      }
+
+      /* 네비게이션 메뉴 */
+      #category ul {
+        display: flex;
+        justify-content: center;
+        gap: 32px;
+        padding: 0;
+        margin: 0;
+        list-style: none;
+      }
+
+      #category li a {
+        font-weight: 600;
+        font-size: 15px;
+        color: #0f172a;
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+
+      #category li a:hover {
+        color: #2563eb;
+      }
+
+      /* ✅ 모바일 반응형 */
+      @media (max-width: 768px) {
+          #header .topArea {
+            flex-direction: column;
+            align-items: center !important;
+            gap: 6px;
+            padding-top: 0 !important;
+            position: relative;
+          }
+
+          #header .topArea__logo img {
+            width: 200px !important;           /* ✅ 로고 크기 확대 */
+            height: auto !important;
+            transform: none !important;
+            margin: 0 auto !important;
+            position: relative;
+            top: -25px;                         /* ✅ 위로 확실히 올리기 */
+          }
+
+          .topArea__user {
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: -10px; /* 로고와 간격 줄이기 */
+          }
+
+          #category ul {
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 14px;
+          }
+      }
   </style>
 </head>
 
 <body id="main">
   <div id="skipNavigation">
+    <p><a href="#category">전체상품목록 바로가기</a></p>
     <p><a href="#contents">본문 바로가기</a></p>
   </div>
 
@@ -98,22 +145,36 @@
     <header id="header">
       <div class="inner">
         <div class="topArea">
+          <!-- ✅ 로고 영역 -->
           <h1 module="Layout_LogoTop" class="topArea__logo">
             <a href="/index.html"><img src="{$logo}" alt="{$mall_name}" /></a>
           </h1>
+
+          <!-- ✅ 로그인 등 우측 메뉴 -->
+          <div class="topArea__user">
+            <!--@import(/layout/basic/state_login.html)-->
+          </div>
         </div>
+
+        <!-- ✅ 네비게이션 메뉴 -->
         <!--@import(/layout/basic/navigation.html)-->
       </div>
     </header>
+    <hr class="layout" />
 
+    <!-- 사이드바 -->
     <!--@import(/layout/basic/sidebar.html)-->
 
     <div id="container">
       <main id="contents" role="main">
         <!--@contents-->
       </main>
+      <hr class="layout" />
     </div>
 
+    <hr class="layout" />
+    <!-- 퀵메뉴 / 하단 -->
+    <!--@import(/layout/basic/quick.html)-->
     <!--@import(/layout/basic/footer.html)-->
   </div>
 </body>

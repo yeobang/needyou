@@ -81,38 +81,3 @@ a:hover {
   display: none !important;
 }
 
-.needyou-footer {
-  padding: 54px 0;
-  background: #000;
-  color: rgba(255, 255, 255, .72);
-}
-
-.needyou-footer .inner {
-  width: min(1180px, calc(100% - 40px));
-  margin: 0 auto;
-}
-
-.needyou-footer .footer-brand {
-  margin-bottom: 10px;
-  color: #fff;
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: 30px;
-  font-weight: 700;
-}
-
-.needyou-footer .footer-copy,
-.needyou-footer .info,
-.needyou-footer .copyright {
-  font-size: 13px;
-  line-height: 1.8;
-}
-
-.needyou-footer .sns {
-  display: flex;
-  gap: 16px;
-  margin: 22px 0;
-}
-
-.needyou-footer a {
-  color: #fff;
-}
