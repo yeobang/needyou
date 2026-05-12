@@ -16,9 +16,28 @@
     .contact-box { padding:46px; background:#fff; border:1px solid var(--line); }
     .contact-box h2 { margin:0 0 18px; font-family:"Cormorant Garamond",serif; font-size:48px; }
     .contact-box p { margin:0 0 24px; color:var(--muted); font-size:17px; line-height:1.85; word-break:keep-all; }
-    .fields { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:28px 0; padding:0; }
-    .fields li { list-style:none; padding:14px 16px; background:var(--cream); color:var(--muted); font-weight:600; }
-    .btn { display:inline-flex; align-items:center; justify-content:center; min-height:52px; padding:0 24px; background:var(--brown); color:#fff; font-weight:800; text-decoration:none; }
+    .contact-form { margin-top:28px; }
+    .fields { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+    .field { display:grid; gap:8px; }
+    .field--full { grid-column:1 / -1; }
+    .field label { font-size:13px; font-weight:700; color:var(--ink); }
+    .field input, .field textarea, .field select {
+      width:100%;
+      padding:14px 16px;
+      border:1px solid var(--line);
+      background:#fff;
+      color:var(--ink);
+      font:inherit;
+      resize:vertical;
+    }
+    .field input::placeholder, .field textarea::placeholder { color:var(--muted); }
+    .field input:focus, .field textarea:focus, .field select:focus { outline:none; border-color:var(--brown); }
+    .field textarea { min-height:148px; }
+    .contact-actions { display:flex; gap:12px; flex-wrap:wrap; margin-top:22px; }
+    .btn { display:inline-flex; align-items:center; justify-content:center; min-height:52px; padding:0 24px; background:var(--brown); color:#fff; font-weight:800; text-decoration:none; border:1px solid var(--brown); cursor:pointer; }
+    .btn--ghost { background:transparent; color:var(--ink); }
+    .contact-note { margin-top:14px; color:var(--muted); font-size:13px; line-height:1.7; }
+    .contact-success { margin:0 0 24px; padding:14px 16px; border:1px solid var(--line); background:#fff; color:var(--ink); font-size:14px; line-height:1.7; }
     @media (max-width:720px){ .sub-inner{width:min(100% - 28px,980px);} .sub-hero{padding:112px 0 70px;} .sub-section{padding:72px 0;} .stats,.fields{grid-template-columns:1fr;} .contact-box{padding:30px;} }
   </style>
   <section class="sub-hero">
@@ -38,16 +57,69 @@
       <div class="contact-box">
         <h2>Partner Inquiry</h2>
         <p>좋은 제품을 가지고 있지만 판매에 어려움을 겪고 계신가요? 지금, 니드유와 함께 새로운 기회를 만들어보세요.</p>
-        <ul class="fields">
-          <li>업체명 / 담당자명</li>
-          <li>연락처 / 이메일</li>
-          <li>제품명 / 제품 카테고리</li>
-          <li>제품 소개 또는 제안 내용</li>
-          <li>희망 진행 일정</li>
-          <li>첨부파일 여부</li>
-        </ul>
-        <a class="btn" href="https://open.kakao.com/o/sfdCZ0dg" target="_blank" rel="noopener">업체 제휴 문의하기</a>
+        <div class="contact-success" id="partnerSuccess" style="display:none;">문의가 정상적으로 접수되었습니다. 확인 후 메일로 회신드리겠습니다.</div>
+        <form class="contact-form" id="partnerInquiryForm" action="https://formsubmit.co/dugustjr98@gmail.com" method="POST">
+          <input type="hidden" name="_subject" value="[니드유 업체 제휴 문의]" />
+          <input type="hidden" name="_template" value="table" />
+          <input type="hidden" name="_next" value="https://needyou09.com/layout/basic/partner.html?submitted=1" />
+          <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" />
+          <div class="fields">
+            <div class="field">
+              <label for="partnerCompany">업체명</label>
+              <input id="partnerCompany" name="company" type="text" placeholder="업체명을 입력해주세요" required />
+            </div>
+            <div class="field">
+              <label for="partnerManager">담당자명</label>
+              <input id="partnerManager" name="manager" type="text" placeholder="담당자명을 입력해주세요" required />
+            </div>
+            <div class="field">
+              <label for="partnerPhone">연락처</label>
+              <input id="partnerPhone" name="phone" type="text" placeholder="연락 가능한 번호를 입력해주세요" required />
+            </div>
+            <div class="field">
+              <label for="partnerEmail">이메일</label>
+              <input id="partnerEmail" name="email" type="email" placeholder="회신 받을 이메일을 입력해주세요" required />
+            </div>
+            <div class="field">
+              <label for="partnerProduct">제품명</label>
+              <input id="partnerProduct" name="product" type="text" placeholder="대표 제품명을 입력해주세요" required />
+            </div>
+            <div class="field">
+              <label for="partnerCategory">제품 카테고리</label>
+              <input id="partnerCategory" name="category" type="text" placeholder="예: 리빙, 뷰티, 식품" required />
+            </div>
+            <div class="field">
+              <label for="partnerSchedule">희망 진행 일정</label>
+              <input id="partnerSchedule" name="schedule" type="text" placeholder="예: 6월 말 오픈 희망" />
+            </div>
+            <div class="field">
+              <label for="partnerAttachment">첨부파일 여부</label>
+              <select id="partnerAttachment" name="attachment_notice">
+                <option value="없음">없음</option>
+                <option value="있음">있음</option>
+                <option value="추후 전달 예정">추후 전달 예정</option>
+              </select>
+            </div>
+            <div class="field field--full">
+              <label for="partnerMessage">제품 소개 또는 제안 내용</label>
+              <textarea id="partnerMessage" name="message" placeholder="제품 특징, 제안 배경, 운영 희망 방향 등을 입력해주세요" required></textarea>
+            </div>
+          </div>
+          <div class="contact-actions">
+            <button class="btn" type="submit">문의 접수하기</button>
+            <a class="btn btn--ghost" href="https://open.kakao.com/o/sfdCZ0dg" target="_blank" rel="noopener">카카오톡 빠른 문의</a>
+          </div>
+          <p class="contact-note">문의 접수 시 입력한 내용이 니드유 메일로 전달됩니다. 자료 첨부가 필요하면 카카오톡 또는 회신 메일로 추가 전달해주세요.</p>
+        </form>
       </div>
     </div>
   </section>
+  <script>
+    (function () {
+      if (window.location.search.indexOf('submitted=1') > -1) {
+        var success = document.getElementById('partnerSuccess');
+        if (success) success.style.display = 'block';
+      }
+    }());
+  </script>
 </div>
