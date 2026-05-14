@@ -1,55 +1,253 @@
-﻿<!--@layout(/layout/basic/layout.html)-->
-<div class="needyou-subpage portfolio-page">
+<!--@layout(/layout/basic/layout.html)-->
+<div class="nd-portfolio">
   <style>
-    @import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap");
-    .needyou-subpage { --black:#000; --cream:#f5f1eb; --brown:#8b6b4c; --ink:#1d1a17; --muted:#72685f; --line:rgba(0,0,0,.12); font-family:"Noto Sans KR",sans-serif; color:var(--ink); background:var(--cream); }
-    .needyou-subpage * { box-sizing:border-box; }
-    .sub-hero { padding:150px 0 94px; background:var(--black); color:#fff; }
-    .sub-inner { width:min(1180px, calc(100% - 40px)); margin:0 auto; }
-    .sub-label { color:#d8c6b4; font-family:"Cormorant Garamond",serif; font-size:24px; font-weight:700; }
-    .sub-title { max-width:860px; margin:18px 0 0; font-family:"Noto Sans KR",sans-serif; font-size:clamp(42px,6vw,76px); line-height:1.15; font-weight:800; color:#fff; word-break:keep-all; }
-    .sub-copy { max-width:720px; margin:28px 0 0; color:rgba(255,255,255,.74); font-size:19px; line-height:1.85; word-break:keep-all; }
-    .sub-section { padding:100px 0; }
-    .portfolio-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
-    .portfolio-card { min-height:390px; display:flex; flex-direction:column; justify-content:flex-end; position:relative; overflow:hidden; padding:28px; color:#fff; background:#222; }
-    .portfolio-card:before { content:""; position:absolute; inset:0; background:var(--image) center/cover; transition:transform .5s ease; }
-    .portfolio-card:after { content:""; position:absolute; inset:0; background:linear-gradient(0deg,rgba(0,0,0,.78),rgba(0,0,0,.08)); }
-    .portfolio-card:hover:before { transform:scale(1.06); }
-    .portfolio-card>* { position:relative; z-index:1; }
-    .portfolio-card .card-link { position:absolute; inset:0; z-index:2; }
-    .portfolio-card .card-link:hover ~ h2 { text-decoration:underline; }
-    .portfolio-card span { align-self:flex-start; margin-bottom:18px; padding:7px 10px; border:1px solid rgba(255,255,255,.48); font-size:12px; font-weight:700; }
-    .portfolio-card h2 { margin:0 0 10px; color:#fff; font-family:"Noto Sans KR",sans-serif; font-size:26px; line-height:1.25; font-weight:800; }
-    .portfolio-card p { margin:0; color:rgba(255,255,255,.76); font-size:14px; line-height:1.7; word-break:keep-all; }
-    .detail-guide { margin-top:56px; padding:34px; border:1px solid var(--line); background:#fff; }
-    .detail-guide h3 { margin:0 0 12px; font-family:"Cormorant Garamond",serif; font-size:42px; }
-    .detail-guide p { margin:0; color:var(--muted); font-size:16px; line-height:1.85; word-break:keep-all; }
-    @media (max-width:1024px){ .portfolio-grid{grid-template-columns:1fr 1fr;} }
-    @media (max-width:720px){ .sub-inner{width:min(100% - 28px,1180px);} .sub-hero{padding:112px 0 70px;} .sub-section{padding:72px 0;} .portfolio-grid{grid-template-columns:1fr;} .portfolio-card{min-height:330px;} }
+    .nd-portfolio {
+      --nd-black: #000000;
+      --nd-cream: #F5F1EB;
+      --nd-brown: #8B6B4C;
+      --nd-ink: #171310;
+      --nd-muted: #6f665e;
+      --nd-line: rgba(0, 0, 0, 0.12);
+      font-family: "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+      color: var(--nd-ink);
+      background: var(--nd-cream);
+      overflow: hidden;
+    }
+
+    .nd-portfolio * { box-sizing: border-box; }
+    .nd-portfolio img { display: block; max-width: 100%; }
+
+    .ndp-inner {
+      width: min(1180px, calc(100% - 48px));
+      margin: 0 auto;
+    }
+
+    .ndp-hero {
+      padding: 116px 0 92px;
+      background: #000;
+      color: #fff;
+    }
+
+    .ndp-label {
+      display: block;
+      margin-bottom: 16px;
+      color: #d9c9ba;
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    .ndp-title {
+      max-width: 860px;
+      margin: 0;
+      color: inherit;
+      font-size: clamp(38px, 5.6vw, 72px);
+      font-weight: 800;
+      line-height: 1.14;
+      letter-spacing: -0.03em;
+      word-break: keep-all;
+    }
+
+    .ndp-copy {
+      max-width: 760px;
+      margin: 26px 0 0;
+      color: rgba(255, 255, 255, 0.74);
+      font-size: 18px;
+      line-height: 1.9;
+      word-break: keep-all;
+    }
+
+    .ndp-section {
+      padding: 96px 0 112px;
+    }
+
+    .ndp-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 22px;
+    }
+
+    .ndp-card {
+      position: relative;
+      min-height: 410px;
+      display: flex;
+      align-items: flex-end;
+      overflow: hidden;
+      background: #111;
+      color: #fff;
+    }
+
+    .ndp-card:before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: var(--image) center/cover;
+      transition: transform 0.45s ease;
+    }
+
+    .ndp-card:after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0, 0, 0, 0.04) 0%, rgba(0, 0, 0, 0.82) 100%);
+    }
+
+    .ndp-card:hover:before {
+      transform: scale(1.05);
+    }
+
+    .ndp-card__link {
+      position: absolute;
+      inset: 0;
+      z-index: 4;
+    }
+
+    .ndp-card__body {
+      position: relative;
+      z-index: 2;
+      padding: 30px;
+    }
+
+    .ndp-card__category {
+      display: inline-block;
+      margin-bottom: 16px;
+      padding: 6px 10px;
+      border: 1px solid rgba(255, 255, 255, 0.52);
+      font-size: 12px;
+      font-weight: 800;
+      line-height: 1.2;
+    }
+
+    .ndp-card h2 {
+      margin: 0 0 12px;
+      color: #fff;
+      font-size: 28px;
+      font-weight: 800;
+      line-height: 1.25;
+      letter-spacing: -0.02em;
+    }
+
+    .ndp-card p {
+      margin: 0;
+      color: rgba(255, 255, 255, 0.78);
+      font-size: 15px;
+      line-height: 1.7;
+      word-break: keep-all;
+    }
+
+    .ndp-note {
+      margin-top: 42px;
+      padding: 32px;
+      border: 1px solid var(--nd-line);
+      background: #fff;
+    }
+
+    .ndp-note h3 {
+      margin: 0 0 10px;
+      color: #000;
+      font-size: 22px;
+      font-weight: 800;
+    }
+
+    .ndp-note p {
+      margin: 0;
+      color: var(--nd-muted);
+      font-size: 16px;
+      line-height: 1.85;
+      word-break: keep-all;
+    }
+
+    [data-reveal] {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    [data-reveal].is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 1024px) {
+      .ndp-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 720px) {
+      .ndp-inner {
+        width: min(100% - 28px, 1180px);
+      }
+
+      .ndp-hero {
+        padding: 86px 0 66px;
+      }
+
+      .ndp-section {
+        padding: 68px 0 82px;
+      }
+
+      .ndp-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .ndp-card {
+        min-height: 340px;
+      }
+
+      .ndp-card__body,
+      .ndp-note {
+        padding: 24px;
+      }
+    }
   </style>
 
-  <section class="sub-hero">
-    <div class="sub-inner">
-      <div class="sub-label">Portfolio</div>
-      <h1 class="sub-title">공동구매 진행 사례</h1>
-      <p class="sub-copy">제품과 셀러의 접점을 설계하고, 실제 판매 흐름으로 이어진 니드유의 대표 프로젝트입니다. 셀러명은 전달 자료 기준으로 노출합니다.</p>
+  <section class="ndp-hero">
+    <div class="ndp-inner" data-reveal>
+      <span class="ndp-label">Portfolio</span>
+      <h1 class="ndp-title">공동구매 진행 사례</h1>
+      <p class="ndp-copy">제품별 대표 이미지와 셀러명을 함께 노출해, 실제 어떤 브랜드와 채널을 연결해 왔는지 한눈에 볼 수 있도록 정리했습니다.</p>
     </div>
   </section>
 
-  <section class="sub-section">
-    <div class="sub-inner">
-      <div class="portfolio-grid">
-        <article class="portfolio-card" style="--image:url('https://images.unsplash.com/photo-1555041469-a586c61ea9bc?q=85&w=1000&auto=format&fit=crop')"><a href="/layout/basic/portfolio-detail.html" class="card-link" aria-label="리젠스 상세 보기"></a><span>Living</span><h2>리젠스</h2><p>제니마망, 신림댁, 떠아니네, 예나홈, 희치홈, 송사장, 초코홈(예정)</p></article>
-        <article class="portfolio-card" style="--image:url('https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?q=85&w=1000&auto=format&fit=crop')"><a href="/layout/basic/portfolio-indie-air.html" class="card-link" aria-label="인디에어 상세 보기"></a><span>Home</span><h2>인디에어</h2><p>윤자네, 제니마망, 도다미네, 호하우스, 바이미룸, 미니멀 써니, 오로리</p></article>
-        <article class="portfolio-card" style="--image:url('https://images.unsplash.com/photo-1519710164239-da123dc03ef4?q=85&w=1000&auto=format&fit=crop')"><a href="/layout/basic/portfolio-ba-pool.html" class="card-link" aria-label="바 풀 상세 보기"></a><span>Lifestyle</span><h2>바 풀</h2><p>제니마망, 도다미네, 리빙유, 희치홈, 떠아니네(예정)</p></article>
-        <article class="portfolio-card" style="--image:url('https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?q=85&w=1000&auto=format&fit=crop')"><a href="/layout/basic/portfolio-obe-socheang.html" class="card-link" aria-label="오베 소창 상세 보기"></a><span>Kitchen</span><h2>오베 소창</h2><p>희치홈, 신림댁, 모들리, 쥬홈, 열매맘, 마마스키친, 호하우스, 봄주부 외</p></article>
-        <article class="portfolio-card" style="--image:url('https://images.unsplash.com/photo-1494438639946-1ebd1d20bf85?q=85&w=1000&auto=format&fit=crop')"><a href="/layout/basic/portfolio-smart-made.html" class="card-link" aria-label="스마트메이드 스탠드 상세 보기"></a><span>Home Office</span><h2>스마트메이드 스탠드</h2><p>도다미네, 희치홈, 하이잼스, 위쓰담북</p></article>
-        <article class="portfolio-card" style="--image:url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=85&w=1000&auto=format&fit=crop')"><a href="/layout/basic/portfolio-winner-stand.html" class="card-link" aria-label="위너 독서대 상세 보기"></a><span>Study</span><h2>위너 독서대</h2><p>도다미네, 하이잼스</p></article>
-        <article class="portfolio-card" style="--image:url('https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?q=85&w=1000&auto=format&fit=crop')"><a href="/layout/basic/portfolio-qmoval.html" class="card-link" aria-label="큐모발 상세 보기"></a><span>Beauty</span><h2>큐모발</h2><p>도다미네, 코루비, 조유경, 듀얼홀릭, 찐하트, 아임박선생, 율윤이네, 제니마망(예정)</p></article>
+  <section class="ndp-section">
+    <div class="ndp-inner">
+      <div class="ndp-grid">
+        <article class="ndp-card" style="--image:url('https://images.unsplash.com/photo-1555041469-a586c61ea9bc?q=85&w=1000&auto=format&fit=crop')" data-reveal>
+          <a class="ndp-card__link" href="/layout/basic/portfolio-detail.html" aria-label="리젠스 상세 보기"></a>
+          <div class="ndp-card__body"><span class="ndp-card__category">Living</span><h2>리젠스</h2><p>제니마망, 신림댁, 떠아니네, 예나홈, 희치홈, 송사장, 초코홈(예정)</p></div>
+        </article>
+        <article class="ndp-card" style="--image:url('https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?q=85&w=1000&auto=format&fit=crop')" data-reveal>
+          <a class="ndp-card__link" href="/layout/basic/portfolio-indie-air.html" aria-label="인디에어 상세 보기"></a>
+          <div class="ndp-card__body"><span class="ndp-card__category">Home</span><h2>인디에어</h2><p>윤자네, 제니마망, 도다미네, 호하우스, 바이미룸, 미니멀 써니, 오로리</p></div>
+        </article>
+        <article class="ndp-card" style="--image:url('https://images.unsplash.com/photo-1519710164239-da123dc03ef4?q=85&w=1000&auto=format&fit=crop')" data-reveal>
+          <a class="ndp-card__link" href="/layout/basic/portfolio-ba-pool.html" aria-label="바 풀 상세 보기"></a>
+          <div class="ndp-card__body"><span class="ndp-card__category">Lifestyle</span><h2>바 풀</h2><p>제니마망, 도다미네, 리빙유, 희치홈, 떠아니네(예정)</p></div>
+        </article>
+        <article class="ndp-card" style="--image:url('https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?q=85&w=1000&auto=format&fit=crop')" data-reveal>
+          <a class="ndp-card__link" href="/layout/basic/portfolio-obe-socheang.html" aria-label="오베 소창 상세 보기"></a>
+          <div class="ndp-card__body"><span class="ndp-card__category">Kitchen</span><h2>오베 소창</h2><p>희치홈, 신림댁, 모들리, 쥬홈, 열매맘, 마마스키친, 호하우스, 봄주부 외</p></div>
+        </article>
+        <article class="ndp-card" style="--image:url('https://images.unsplash.com/photo-1494438639946-1ebd1d20bf85?q=85&w=1000&auto=format&fit=crop')" data-reveal>
+          <a class="ndp-card__link" href="/layout/basic/portfolio-smart-made.html" aria-label="스마트메이드 스탠드 상세 보기"></a>
+          <div class="ndp-card__body"><span class="ndp-card__category">Home Office</span><h2>스마트메이드 스탠드</h2><p>도다미네, 희치홈, 하이잼스, 위쓰담북</p></div>
+        </article>
+        <article class="ndp-card" style="--image:url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=85&w=1000&auto=format&fit=crop')" data-reveal>
+          <a class="ndp-card__link" href="/layout/basic/portfolio-winner-stand.html" aria-label="위너 독서대 상세 보기"></a>
+          <div class="ndp-card__body"><span class="ndp-card__category">Study</span><h2>위너 독서대</h2><p>도다미네, 하이잼스</p></div>
+        </article>
+        <article class="ndp-card" style="--image:url('https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?q=85&w=1000&auto=format&fit=crop')" data-reveal>
+          <a class="ndp-card__link" href="/layout/basic/portfolio-qmoval.html" aria-label="큐모발 상세 보기"></a>
+          <div class="ndp-card__body"><span class="ndp-card__category">Beauty</span><h2>큐모발</h2><p>도다미네, 코루비, 조유경, 듀얼홀릭, 찐하트, 아임박선생, 율윤이네, 제니마망(예정)</p></div>
+        </article>
       </div>
-      <div class="detail-guide">
-        <h3>Portfolio Detail</h3>
-        <p>상세페이지는 제품별로 대표 이미지, 인스타그램 공구 캡처, ABOUT 정보, 진행 회차, 매출 그래프 이미지를 받아 추가 구성합니다. 관리자 기능 없이 정적 상세페이지로 만들고, 추후 추가 사례는 유지보수로 반영하는 방식이 적합합니다.</p>
+
+      <div class="ndp-note" data-reveal>
+        <h3>상세페이지 운영 방식</h3>
+        <p>상세페이지는 제품별 대표 이미지, 인스타그램 공구 캡처, ABOUT 정보, 진행 회차, 매출 그래프 이미지를 받아 정적으로 구성합니다. 신규 사례는 6개월에서 1년에 한 번 유지보수로 반영하는 방식이 적합합니다.</p>
       </div>
     </div>
   </section>

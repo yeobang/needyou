@@ -4,22 +4,19 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- PG크로스브라우징필수내용 -->
-  <meta http-equiv="Cache-Control" content="no-cache" />
-  <meta http-equiv="Expires" content="0" />
-  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Cache-Control" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <meta http-equiv="Pragma" content="no-cache">
 
-  <title>니드유: NEED YOU</title>
+  <title>니드유컴퍼니</title>
   <link rel="preconnect" href="https://img.echosting.cafe24.com">
-  <link rel="preload" href="/fonts/Noto-Sans-CJK-KR-Bold.woff2" as="font" type="font/woff2" crossorigin="anonymous">
-  <link rel="preload" href="/fonts/Noto-Sans-CJK-KR-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
-  <link rel="preload" href="/fonts/Segoe-UI-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
-  <link rel="preload" href="/fonts/Segoe-UI-Bold.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <!--@css(/layout/basic/css/common.css)-->
   <!--@css(/layout/basic/css/layout.css)-->
   <!--@css(/layout/basic/css/fonts.css)-->
-  <!--@css(/layout/basic/css/needyou-luxury.css)-->
   <!--@css(/layout/basic/css/ec-base-ui.css)-->
   <!--@css(/layout/basic/css/ec-base-button.css)-->
   <!--@css(/layout/basic/css/ec-base-tooltip.css)-->
@@ -31,218 +28,148 @@
   <!--@js(/layout/basic/js/layout.js)-->
 
   <style>
-      /* ✅ 헤더 배경 */
-      #header {
-        background: #fff !important;
-      }
+    body {
+      min-width: 360px;
+      max-width: none;
+      margin: 0;
+      background: #F5F1EB;
+      color: #171310;
+      font-family: "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+      letter-spacing: 0;
+      overflow-x: hidden;
+    }
 
+    a:hover { text-decoration: none; }
+
+    #header {
+      position: relative;
+      z-index: 50;
+      background: rgba(245, 241, 235, 0.96);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    }
+
+    #header .inner {
+      width: min(1180px, calc(100% - 40px));
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 36px;
+      min-height: 86px;
+    }
+
+    #header .topArea {
+      margin: 0;
+      padding: 0;
+      flex: 0 0 auto;
+    }
+
+    #header .topArea__logo,
+    #header .topArea__logo a {
+      display: flex;
+      align-items: center;
+      margin: 0;
+      padding: 0;
+    }
+
+    #header .topArea__logo img {
+      display: block;
+      width: auto;
+      max-width: 138px;
+      max-height: 54px;
+      height: auto;
+      object-fit: contain;
+      transform: none !important;
+      position: static !important;
+      margin: 0 !important;
+    }
+
+    #header .navigation {
+      flex: 1 1 auto;
+      display: flex;
+      justify-content: flex-end;
+      margin: 0;
+      padding: 0;
+    }
+
+    #header .btnNav,
+    #header .topArea__user,
+    #header .navigation__util {
+      display: none !important;
+    }
+
+    #header .navigation__category ul {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 36px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    #header .navigation__category li a {
+      display: block;
+      color: #171310;
+      font-size: 15px;
+      font-weight: 700;
+      line-height: 1.4;
+      white-space: nowrap;
+    }
+
+    #header .navigation__category li a:hover {
+      color: #8B6B4C;
+    }
+
+    #container {
+      width: 100%;
+      margin: 0;
+    }
+
+    #contents {
+      width: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+    @media (max-width: 768px) {
       #header .inner {
-        width: min(1180px, calc(100% - 40px));
-        margin: 0 auto;
-      }
-
-      /* ✅ 상단 구조 (로고 좌측 정렬) */
-      #header .topArea {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 24px;
-        padding: 18px 0 10px;
-        margin: 0;
+        width: min(100% - 28px, 1180px);
+        min-height: auto;
+        padding: 18px 0;
+        display: block;
       }
 
       #header .topArea__logo,
       #header .topArea__logo a {
-        display: inline-flex;
-        align-items: center;
         justify-content: center;
-        flex-shrink: 0;
-      }
-
-      /* ✅ 로고 크기 및 위치 (PC 기준) */
-      #header .topArea__logo img {
-          display: block;
-          width: auto;
-          max-width: min(260px, 100%);
-          max-height: 72px;
-          height: auto;
-          object-fit: contain;
-          vertical-align: middle;
-        }
-
-      /* 로그인/장바구니 등 우측 메뉴 */
-      .topArea__user {
-        display: none !important;
-      }
-
-      .topArea__user a {
-        color: #0f172a;
-        text-decoration: none;
-      }
-
-      .topArea__user a:hover {
-        color: #2563eb;
-      }
-
-      /* 네비게이션 메뉴 */
-      #header .navigation {
-        position: relative;
-        z-index: 5;
-        padding-bottom: 14px;
-      }
-
-      #header .btnNav {
-        display: none;
-      }
-
-      #header .navigation__category ul {
-        display: flex;
-        justify-content: center;
-        gap: 32px;
-        padding: 0;
-        margin: 0;
-        list-style: none;
-      }
-
-      #header .navigation__category li a {
-        display: inline-block;
-        font-weight: 600;
-        font-size: 15px;
-        color: #0f172a;
-        text-decoration: none;
-        transition: color 0.2s;
-      }
-
-      #header .navigation__category li a:hover {
-        color: #2563eb;
-      }
-
-      /* ✅ 모바일 반응형 */
-      @media (max-width: 768px) {
-          #header .topArea {
-            flex-direction: column;
-            align-items: center !important;
-            gap: 6px;
-            padding-top: 0 !important;
-            position: relative;
-          }
-
-          #header .topArea__logo img {
-            width: 200px !important;           /* ✅ 로고 크기 확대 */
-            height: auto !important;
-            transform: none !important;
-            margin: 0 auto !important;
-            position: relative;
-            top: -25px;                         /* ✅ 위로 확실히 올리기 */
-          }
-
-          .topArea__user {
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-top: -10px; /* 로고와 간격 줄이기 */
-          }
-
-          #header .navigation {
-            padding-bottom: 10px;
-          }
-
-          #header .navigation__category ul {
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 14px;
-          }
-      }
-  </style>
-  <style>
-      #header .inner {
-        width: min(1180px, calc(100% - 40px));
-        margin: 0 auto;
-      }
-
-      #header .topArea {
-        display: flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-        gap: 24px !important;
-        padding: 18px 0 10px !important;
-        margin: 0 !important;
-      }
-
-      #header .topArea__logo,
-      #header .topArea__logo a {
-        display: inline-flex !important;
-        align-items: center !important;
-        justify-content: center !important;
       }
 
       #header .topArea__logo img {
-        transform: none !important;
-        position: static !important;
-        top: auto !important;
-        z-index: auto !important;
-        width: auto !important;
-        height: auto !important;
-        max-width: min(260px, 100%) !important;
-        max-height: 72px !important;
-        margin: 0 !important;
-        object-fit: contain;
-      }
-
-      .topArea__user {
-        display: none !important;
+        max-width: 112px;
+        max-height: 44px;
       }
 
       #header .navigation {
-        padding: 0 0 18px !important;
+        justify-content: center;
+        margin-top: 14px;
       }
 
       #header .navigation__category ul {
-        display: flex;
+        justify-content: center;
+        gap: 12px 18px;
         flex-wrap: wrap;
-        align-items: center;
-        justify-content: center;
-        gap: 18px 44px !important;
       }
 
       #header .navigation__category li a {
-        color: #17120f !important;
-        font-weight: 700 !important;
-        white-space: nowrap;
+        font-size: 14px;
       }
-
-      @media (max-width: 768px) {
-        #header .inner {
-          width: min(100% - 28px, 1180px);
-        }
-
-        #header .topArea {
-          gap: 16px !important;
-          padding: 14px 0 8px !important;
-        }
-
-        #header .topArea__logo img {
-          max-width: 200px !important;
-          max-height: 56px !important;
-        }
-
-        #header .navigation {
-          padding-bottom: 14px !important;
-        }
-
-        #header .navigation__category ul {
-          gap: 12px 22px !important;
-        }
-
-        #header .navigation__category li a {
-          font-size: 14px !important;
-        }
-      }
+    }
   </style>
 </head>
 
 <body id="main">
   <div id="skipNavigation">
-    <p><a href="#category">전체상품목록 바로가기</a></p>
     <p><a href="#contents">본문 바로가기</a></p>
   </div>
 
@@ -250,72 +177,35 @@
     <header id="header">
       <div class="inner">
         <div class="topArea">
-          <!-- ✅ 로고 영역 -->
           <h1 module="Layout_LogoTop" class="topArea__logo">
-            <a href="/index.html"><img src="{$logo}" alt="{$mall_name}" /></a>
+            <a href="/index.html"><img src="{$logo}" alt="{$mall_name}"></a>
           </h1>
-
-          <!-- ✅ 로그인 등 우측 메뉴 -->
           <div class="topArea__user">
             <!--@import(/layout/basic/state_login.html)-->
           </div>
         </div>
 
-        <!-- ✅ 네비게이션 메뉴 -->
         <!--@import(/layout/basic/navigation.html)-->
       </div>
     </header>
-    <hr class="layout" />
+    <hr class="layout">
 
-    <!-- 사이드바 -->
     <!--@import(/layout/basic/sidebar.html)-->
 
     <div id="container">
       <main id="contents" role="main">
         <!--@contents-->
       </main>
-      <hr class="layout" />
+      <hr class="layout">
     </div>
 
-    <hr class="layout" />
-    <!-- 퀵메뉴 / 하단 -->
+    <hr class="layout">
     <!--@import(/layout/basic/quick.html)-->
     <!--@import(/layout/basic/footer.html)-->
   </div>
   <script>
     (function () {
-      var selectors = [
-        ".section-head",
-        ".intro-grid",
-        ".flow-card",
-        ".portfolio-card",
-        ".case-layout",
-        ".review-card",
-        ".stat",
-        ".contact-card",
-        ".sub-hero .sub-inner",
-        ".sub-section .sub-inner > *",
-        ".portfolio-detail-page .pd-hero__inner",
-        ".portfolio-detail-page .pd-about",
-        ".portfolio-detail-page .pd-stat",
-        ".portfolio-detail-page .pd-gallery figure",
-        ".portfolio-detail-page .pd-nav",
-        ".needyou-brand [data-fade]",
-        ".needyou-brand .company-content",
-        ".needyou-brand .intro-grid",
-        ".needyou-brand .process-type",
-        ".needyou-brand .qa-item"
-      ];
-
-      var elements = [];
-      selectors.forEach(function (selector) {
-        document.querySelectorAll(selector).forEach(function (element) {
-          if (!element.classList.contains("luxury-reveal") && !element.hasAttribute("data-reveal")) {
-            element.classList.add("luxury-reveal");
-          }
-          elements.push(element);
-        });
-      });
+      var elements = document.querySelectorAll("[data-reveal]");
 
       if (!("IntersectionObserver" in window)) {
         elements.forEach(function (element) {
@@ -331,7 +221,7 @@
             observer.unobserve(entry.target);
           }
         });
-      }, { threshold: 0.18, rootMargin: "0px 0px -60px 0px" });
+      }, { threshold: 0.16, rootMargin: "0px 0px -40px 0px" });
 
       elements.forEach(function (element) {
         observer.observe(element);
