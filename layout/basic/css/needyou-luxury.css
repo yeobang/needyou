@@ -71,7 +71,7 @@ body::before {
 }
 
 #header .topArea {
-  padding: 18px 0 14px !important;
+  padding: 0 !important;
 }
 
 #header .topArea__logo img {
@@ -79,17 +79,17 @@ body::before {
 }
 
 #header .navigation__category ul {
-  gap: 40px;
+  gap: inherit;
 }
 
 #header .navigation__category li a {
   position: relative;
-  padding: 10px 0;
+  padding: 6px 0;
   color: #241d18;
   font-size: 14px;
   font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  text-transform: none;
 }
 
 #header .navigation__category li a::after {
