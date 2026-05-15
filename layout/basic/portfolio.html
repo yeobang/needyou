@@ -1,4 +1,4 @@
-<!--@layout(/layout/basic/layout.html)-->
+﻿<!--@layout(/layout/basic/layout.html)-->
 <div class="nd-page portfolio-page">
 <style>
   .portfolio-page {
@@ -42,31 +42,6 @@
   .portfolio-page .hero-copy .nd-copy {
     max-width: 34ch;
   }
-  .portfolio-page .hero-note {
-    justify-self: end;
-    padding: 24px 24px 22px;
-    border-radius: 28px;
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    background: rgba(255, 255, 255, 0.08);
-    backdrop-filter: blur(14px);
-    min-width: min(100%, 280px);
-  }
-  .portfolio-page .hero-note strong {
-    display: block;
-    margin-bottom: 10px;
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: .2em;
-    text-transform: uppercase;
-    color: var(--sand);
-  }
-  .portfolio-page .hero-note p {
-    margin: 0;
-    color: rgba(248, 244, 235, .76);
-    line-height: 1.8;
-    font-size: 14px;
-  }
-
   .portfolio-page .nd-section {
     padding: var(--section-y) 0;
   }
@@ -210,37 +185,10 @@
   .portfolio-page .h-md { min-height: 440px; }
   .portfolio-page .h-sm { min-height: 340px; }
 
-  .portfolio-page .guide-box {
-    display: grid;
-    grid-template-columns: minmax(0, .8fr) minmax(0, 1.1fr);
-    gap: 26px;
-    margin-top: 10px;
-    padding: 34px;
-  }
-  .portfolio-page .guide-box h4 {
-    margin: 0;
-    font-family: var(--serif);
-    font-size: clamp(34px, 4vw, 54px);
-    font-weight: 600;
-    line-height: .96;
-    letter-spacing: -.04em;
-  }
-  .portfolio-page .guide-box p {
-    margin: 0;
-    color: var(--ink-soft);
-    font-size: 15px;
-    line-height: 1.9;
-    word-break: keep-all;
-  }
-
   @media (max-width: 1080px) {
     .portfolio-page .hero-inner,
-    .portfolio-page .showcase-head,
-    .portfolio-page .guide-box {
+    .portfolio-page .showcase-head {
       grid-template-columns: 1fr;
-    }
-    .portfolio-page .hero-note {
-      justify-self: start;
     }
     .portfolio-page .portfolio-card {
       grid-column: span 6 !important;
@@ -260,9 +208,6 @@
       grid-column: auto !important;
       min-height: 360px !important;
     }
-    .portfolio-page .guide-box {
-      padding: 26px;
-    }
   }
 </style>
 
@@ -270,16 +215,11 @@
   <div class="hero-inner">
     <div class="hero-copy">
       <div class="nd-kicker" data-reveal>Portfolio</div>
-      <h1 class="nd-title" data-reveal data-reveal-delay="1">공동구매가<br>브랜드 자산이 된 순간들</h1>
+      <h1 class="nd-title" data-reveal data-reveal-delay="1">怨듬룞援щℓ媛<br>釉뚮옖???먯궛?????쒓컙??/h1>
       <p class="nd-copy" data-reveal data-reveal-delay="2">
-        니드유의 포트폴리오는 단순한 판매 기록이 아니라,
-        제품과 셀러의 접점을 어떤 방식으로 설계했는지 보여주는 실행 사례입니다.
+        ?덈뱶?좎쓽 ?ы듃?대━?ㅻ뒗 ?⑥닚???먮ℓ 湲곕줉???꾨땲??
+        ?쒗뭹怨???ъ쓽 ?묒젏???대뼡 諛⑹떇?쇰줈 ?ㅺ퀎?덈뒗吏 蹂댁뿬二쇰뒗 ?ㅽ뻾 ?щ??낅땲??
       </p>
-    </div>
-
-    <div class="hero-note" data-reveal data-reveal-delay="3">
-      <strong>Portfolio Note</strong>
-      <p>브랜드 무드, 타깃 셀러, 콘텐츠 전개, 판매 반응까지 한 흐름 안에서 정리했습니다.</p>
     </div>
   </div>
 </section>
@@ -289,79 +229,70 @@
     <div class="showcase-head">
       <div data-reveal>
         <div class="nd-eyebrow">Selected Works</div>
-        <h2>니드유가 만든<br>진행 사례</h2>
+        <h2>?덈뱶?좉? 留뚮뱺<br>吏꾪뻾 ?щ?</h2>
       </div>
       <p data-reveal data-reveal-delay="1">
-        각 사례는 단지 제품 소개가 아니라, 어떤 포지션과 메시지로 시장과 연결되었는지에 대한 기록입니다.
-        상세 페이지에서 프로젝트별 방향성과 운영 구조를 더 확인할 수 있습니다.
+        媛??щ????⑥? ?쒗뭹 ?뚭컻媛 ?꾨땲?? ?대뼡 ?ъ??섍낵 硫붿떆吏濡??쒖옣怨??곌껐?섏뿀?붿??????湲곕줉?낅땲??
+        ?곸꽭 ?섏씠吏?먯꽌 ?꾨줈?앺듃蹂?諛⑺뼢?깃낵 ?댁쁺 援ъ“瑜????뺤씤?????덉뒿?덈떎.
       </p>
     </div>
 
     <div class="portfolio-grid">
       <article class="portfolio-card w-7 h-lg" style="--image:url('https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=1200&q=80')" data-reveal>
-        <a href="/layout/basic/portfolio-detail.html" class="card-link" aria-label="리젠스 상세 보기"></a>
+        <a href="/layout/basic/portfolio-detail.html" class="card-link" aria-label="由ъ젨???곸꽭 蹂닿린"></a>
         <span class="tag">Living Interior</span>
-        <h3>리젠스</h3>
-        <p>공간의 무드와 프리미엄 톤을 함께 제안해야 했던 리빙 카테고리 사례.</p>
+        <h3>由ъ젨??/h3>
+        <p>怨듦컙??臾대뱶? ?꾨━誘몄뾼 ?ㅼ쓣 ?④퍡 ?쒖븞?댁빞 ?덈뜕 由щ튃 移댄뀒怨좊━ ?щ?.</p>
         <div class="meta">Case Study</div>
       </article>
 
       <article class="portfolio-card w-5 h-md" style="--image:url('https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1200&q=80')" data-reveal data-reveal-delay="1">
-        <a href="/layout/basic/portfolio-indie-air.html" class="card-link" aria-label="인디에어 상세 보기"></a>
+        <a href="/layout/basic/portfolio-indie-air.html" class="card-link" aria-label="?몃뵒?먯뼱 ?곸꽭 蹂닿린"></a>
         <span class="tag">Home Tech</span>
-        <h3>인디에어</h3>
-        <p>기능 설명을 감성적으로 번역해 판매 장면을 만든 사례.</p>
+        <h3>?몃뵒?먯뼱</h3>
+        <p>湲곕뒫 ?ㅻ챸??媛먯꽦?곸쑝濡?踰덉뿭???먮ℓ ?λ㈃??留뚮뱺 ?щ?.</p>
         <div class="meta">Performance</div>
       </article>
 
       <article class="portfolio-card w-4 h-sm" style="--image:url('https://images.unsplash.com/photo-1519710164239-da123dc03ef4?auto=format&fit=crop&w=1200&q=80')" data-reveal>
-        <a href="/layout/basic/portfolio-ba-pool.html" class="card-link" aria-label="바풀 상세 보기"></a>
+        <a href="/layout/basic/portfolio-ba-pool.html" class="card-link" aria-label="諛뷀? ?곸꽭 蹂닿린"></a>
         <span class="tag">Lifestyle</span>
-        <h3>바풀</h3>
-        <p>일상성과 실용성을 중심으로 전달 포인트를 단순화한 프로젝트.</p>
+        <h3>諛뷀?</h3>
+        <p>?쇱긽?깃낵 ?ㅼ슜?깆쓣 以묒떖?쇰줈 ?꾨떖 ?ъ씤?몃? ?⑥닚?뷀븳 ?꾨줈?앺듃.</p>
         <div class="meta">Direction</div>
       </article>
 
       <article class="portfolio-card w-4 h-sm" style="--image:url('https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?auto=format&fit=crop&w=1200&q=80')" data-reveal data-reveal-delay="1">
-        <a href="/layout/basic/portfolio-obe-socheang.html" class="card-link" aria-label="오베소창 상세 보기"></a>
+        <a href="/layout/basic/portfolio-obe-socheang.html" class="card-link" aria-label="?ㅻ쿋?뚯갹 ?곸꽭 蹂닿린"></a>
         <span class="tag">Fabric</span>
-        <h3>오베소창</h3>
-        <p>소재 가치와 브랜드 감도를 함께 살린 패브릭 카테고리 진행 사례.</p>
+        <h3>?ㅻ쿋?뚯갹</h3>
+        <p>?뚯옱 媛移섏? 釉뚮옖??媛먮룄瑜??④퍡 ?대┛ ?⑤툕由?移댄뀒怨좊━ 吏꾪뻾 ?щ?.</p>
         <div class="meta">Storytelling</div>
       </article>
 
       <article class="portfolio-card w-4 h-sm" style="--image:url('https://images.unsplash.com/photo-1494438639946-1ebd1d20bf85?auto=format&fit=crop&w=1200&q=80')" data-reveal data-reveal-delay="2">
-        <a href="/layout/basic/portfolio-smart-made.html" class="card-link" aria-label="스마트메이드 스탠드 상세 보기"></a>
+        <a href="/layout/basic/portfolio-smart-made.html" class="card-link" aria-label="?ㅻ쭏?몃찓?대뱶 ?ㅽ깲???곸꽭 蹂닿린"></a>
         <span class="tag">Object</span>
-        <h3>스마트메이드</h3>
-        <p>기능보다 라이프스타일 연출을 먼저 보여준 판매 기획.</p>
+        <h3>?ㅻ쭏?몃찓?대뱶</h3>
+        <p>湲곕뒫蹂대떎 ?쇱씠?꾩뒪????곗텧??癒쇱? 蹂댁뿬以 ?먮ℓ 湲고쉷.</p>
         <div class="meta">Mood Build</div>
       </article>
 
       <article class="portfolio-card w-5 h-md" style="--image:url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=80')" data-reveal>
-        <a href="/layout/basic/portfolio-winner-stand.html" class="card-link" aria-label="위너 스탠드 상세 보기"></a>
+        <a href="/layout/basic/portfolio-winner-stand.html" class="card-link" aria-label="?꾨꼫 ?ㅽ깲???곸꽭 蹂닿린"></a>
         <span class="tag">Furniture</span>
-        <h3>위너 스탠드</h3>
-        <p>실사용 맥락을 강화해 구매 장면을 명확하게 만든 사례.</p>
+        <h3>?꾨꼫 ?ㅽ깲??/h3>
+        <p>?ㅼ궗??留λ씫??媛뺥솕??援щℓ ?λ㈃??紐낇솗?섍쾶 留뚮뱺 ?щ?.</p>
         <div class="meta">Execution</div>
       </article>
 
       <article class="portfolio-card w-7 h-md" style="--image:url('https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=1200&q=80')" data-reveal data-reveal-delay="1">
-        <a href="/layout/basic/portfolio-qmoval.html" class="card-link" aria-label="큐모발 상세 보기"></a>
+        <a href="/layout/basic/portfolio-qmoval.html" class="card-link" aria-label="?먮え諛??곸꽭 蹂닿린"></a>
         <span class="tag">Beauty</span>
-        <h3>큐모발</h3>
-        <p>카테고리 특성에 맞는 신뢰 표현과 셀러 호흡을 세밀하게 조정한 프로젝트.</p>
+        <h3>?먮え諛?/h3>
+        <p>移댄뀒怨좊━ ?뱀꽦??留욌뒗 ?좊ː ?쒗쁽怨?????명씉???몃??섍쾶 議곗젙???꾨줈?앺듃.</p>
         <div class="meta">Trust Layer</div>
       </article>
-    </div>
-
-    <div class="guide-box surface" data-reveal>
-      <h4>판매 페이지가 아니라<br>설계 문서처럼 보이게</h4>
-      <p>
-        니드유의 상세 사례는 제품 설명을 늘어놓는 대신, 어떤 방향으로 셀러와 매칭했고
-        어떤 장면을 강조했는지 보여주도록 구성했습니다. 포트폴리오가 곧 니드유의 감각과
-        운영 방식을 설명하는 장치가 되도록 만든 페이지입니다.
-      </p>
     </div>
   </div>
 </section>
