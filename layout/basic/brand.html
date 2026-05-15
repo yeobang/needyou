@@ -26,7 +26,9 @@
 .needyou-brand .brand {
   color: #fff;
   background: linear-gradient(180deg, #0a3b52 0%, #0d4f6b 100%);
-  height: 600px; /* ← 고정 높이 */
+  height: 600px;
+  /* fixed 헤더(76px)만큼 패딩을 더해 콘텐츠가 헤더에 가려지지 않게 */
+  padding-top: var(--header-h, 76px);
   display: flex;
   flex-direction: column;
   justify-content: center;

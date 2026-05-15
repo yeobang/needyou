@@ -1,125 +1,433 @@
-﻿<!--@layout(/layout/basic/layout.html)-->
-<div class="needyou-subpage partner-page">
-  <style>
-    @import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap");
-    .needyou-subpage { --black:#000; --cream:#f5f1eb; --brown:#8b6b4c; --ink:#1d1a17; --muted:#72685f; --line:rgba(0,0,0,.12); font-family:"Noto Sans KR",sans-serif; color:var(--ink); background:var(--cream); }
-    .sub-hero { padding:150px 0 94px; background:var(--black); color:#fff; }
-    .sub-inner { width:min(980px, calc(100% - 40px)); margin:0 auto; }
-    .sub-label { color:#d8c6b4; font-family:"Cormorant Garamond",serif; font-size:24px; font-weight:700; }
-    .sub-title { margin:18px 0 0; font-family:"Noto Sans KR",sans-serif; font-size:clamp(42px,6vw,76px); line-height:1.15; font-weight:800; color:#fff; word-break:keep-all; }
-    .sub-copy { max-width:720px; margin:28px 0 0; color:rgba(255,255,255,.74); font-size:19px; line-height:1.85; word-break:keep-all; }
-    .sub-section { padding:100px 0; }
-    .stats { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-bottom:50px; }
-    .stat { padding:34px; border:1px solid var(--line); background:#fff; }
-    .stat strong { display:block; color:var(--brown); font-family:"Cormorant Garamond",serif; font-size:48px; line-height:1; }
-    .stat span { display:block; margin-top:10px; color:var(--muted); font-size:15px; }
-    .contact-box { padding:46px; background:#fff; border:1px solid var(--line); }
-    .contact-box h2 { margin:0 0 18px; font-family:"Cormorant Garamond",serif; font-size:48px; }
-    .contact-box p { margin:0 0 24px; color:var(--muted); font-size:17px; line-height:1.85; word-break:keep-all; }
-    .contact-form { margin-top:28px; }
-    .fields { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
-    .field { display:grid; gap:8px; }
-    .field--full { grid-column:1 / -1; }
-    .field label { font-size:13px; font-weight:700; color:var(--ink); }
-    .field input, .field textarea, .field select {
-      width:100%;
-      padding:14px 16px;
-      border:1px solid var(--line);
-      background:#fff;
-      color:var(--ink);
-      font:inherit;
-      resize:vertical;
+<!--@layout(/layout/basic/layout.html)-->
+<div class="nd-page partner-page">
+<style>
+  .partner-page {
+    --hero-image:
+      linear-gradient(135deg, rgba(10, 8, 7, 0.86), rgba(17, 13, 10, 0.58)),
+      radial-gradient(circle at 22% 18%, rgba(220, 200, 166, 0.18), transparent 26%),
+      url("https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=1600&q=80");
+  }
+
+  .partner-page .nd-hero {
+    position: relative;
+    min-height: 90vh;
+    display: flex;
+    align-items: end;
+    overflow: hidden;
+    color: var(--white);
+    background: var(--black);
+  }
+  .partner-page .nd-hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: var(--hero-image) center/cover;
+  }
+  .partner-page .hero-inner {
+    position: relative;
+    z-index: 1;
+    width: min(var(--container), calc(100% - var(--pad-x) * 2));
+    margin: 0 auto;
+    padding: clamp(182px, 24vh, 248px) 0 clamp(54px, 9vh, 92px);
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(260px, .78fr);
+    gap: clamp(28px, 5vw, 70px);
+    align-items: end;
+  }
+  .partner-page .hero-copy {
+    display: grid;
+    gap: 24px;
+    max-width: 760px;
+  }
+  .partner-page .hero-copy .nd-copy {
+    max-width: 35ch;
+  }
+  .partner-page .hero-panel {
+    justify-self: end;
+    padding: 24px 24px 22px;
+    border-radius: 30px;
+    border: 1px solid rgba(190, 160, 106, 0.22);
+    background: rgba(250, 246, 239, 0.94);
+    box-shadow: 0 14px 28px rgba(10, 8, 7, 0.08);
+  }
+  .partner-page .hero-panel strong {
+    display: block;
+    margin-bottom: 10px;
+    color: var(--gold-deep);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+  }
+  .partner-page .hero-panel p {
+    margin: 0;
+    color: var(--ink-soft);
+    font-size: 14px;
+    line-height: 1.8;
+  }
+
+  .partner-page .nd-section {
+    padding: var(--section-y) 0;
+  }
+  .partner-page .surface {
+    border-radius: 32px;
+    border: 1px solid rgba(190, 160, 106, 0.16);
+    background: rgba(255, 250, 242, 0.96);
+    box-shadow: var(--shadow-soft);
+  }
+
+  .partner-page .content-wrap {
+    width: min(var(--container), calc(100% - var(--pad-x) * 2));
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: minmax(0, .86fr) minmax(0, 1.14fr);
+    gap: 22px;
+    align-items: start;
+  }
+  .partner-page .sales-panel {
+    padding: 34px;
+    display: grid;
+    gap: 28px;
+    position: sticky;
+    top: 118px;
+  }
+  .partner-page .sales-panel h2 {
+    margin: 0;
+    font-family: var(--serif);
+    font-size: clamp(38px, 4.2vw, 58px);
+    font-weight: 600;
+    line-height: .96;
+    letter-spacing: -.04em;
+  }
+  .partner-page .sales-panel > p {
+    margin: 0;
+    color: var(--ink-soft);
+    line-height: 1.9;
+    font-size: 15px;
+  }
+  .partner-page .value-list {
+    display: grid;
+    gap: 14px;
+  }
+  .partner-page .value-item {
+    padding: 18px 18px 18px 20px;
+    border-radius: 22px;
+    background: rgba(255, 255, 255, 0.94);
+    border: 1px solid rgba(190, 160, 106, 0.12);
+  }
+  .partner-page .value-item strong {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 18px;
+    line-height: 1.3;
+    letter-spacing: -.02em;
+  }
+  .partner-page .value-item p {
+    margin: 0;
+    color: var(--ink-soft);
+    font-size: 14px;
+    line-height: 1.8;
+    word-break: keep-all;
+  }
+  .partner-page .quick-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 52px;
+    padding: 0 22px;
+    border-radius: 999px;
+    border: 1px solid rgba(190, 160, 106, 0.26);
+    background: linear-gradient(135deg, rgba(198, 165, 111, 0.96), rgba(138, 105, 52, 0.96));
+    color: #fffdf8;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    box-shadow: 0 14px 28px rgba(17, 13, 10, 0.12);
+    transition: transform .35s var(--ease), box-shadow .35s var(--ease);
+  }
+  .partner-page .quick-link:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 20px 36px rgba(17, 13, 10, 0.14);
+  }
+
+  .partner-page .form-box {
+    padding: 34px;
+  }
+  .partner-page .form-head {
+    display: grid;
+    gap: 12px;
+    margin-bottom: 28px;
+  }
+  .partner-page .form-head h3 {
+    margin: 0;
+    font-size: clamp(30px, 3vw, 42px);
+    line-height: 1.04;
+    letter-spacing: -.03em;
+  }
+  .partner-page .form-head p {
+    margin: 0;
+    color: var(--ink-soft);
+    line-height: 1.85;
+    font-size: 15px;
+    word-break: keep-all;
+  }
+  .partner-page .success {
+    margin-bottom: 20px;
+    padding: 16px 18px;
+    border-radius: 18px;
+    border: 1px solid rgba(190, 160, 106, 0.18);
+    background: rgba(241, 233, 220, 0.92);
+    color: var(--ink);
+    font-size: 14px;
+    line-height: 1.7;
+  }
+  .partner-page .fields {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+  .partner-page .field {
+    display: grid;
+    gap: 8px;
+  }
+  .partner-page .field--full {
+    grid-column: 1 / -1;
+  }
+  .partner-page .field label {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .partner-page .field input,
+  .partner-page .field textarea,
+  .partner-page .field select {
+    width: 100%;
+    min-height: 56px;
+    padding: 0 16px;
+    border-radius: 18px;
+    border: 1px solid rgba(23, 19, 16, 0.08);
+    background: rgba(255, 255, 255, 0.9);
+    color: var(--ink);
+    outline: none;
+    transition: border-color .3s var(--ease), box-shadow .3s var(--ease), transform .3s var(--ease);
+    -webkit-appearance: none;
+    appearance: none;
+  }
+  .partner-page .field textarea {
+    min-height: 180px;
+    padding-top: 16px;
+    resize: vertical;
+  }
+  .partner-page .field input:focus,
+  .partner-page .field textarea:focus,
+  .partner-page .field select:focus {
+    border-color: rgba(190, 160, 106, 0.42);
+    box-shadow: 0 0 0 4px rgba(190, 160, 106, 0.12);
+  }
+  .partner-page .actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 22px;
+  }
+  .partner-page .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 56px;
+    padding: 0 24px;
+    border-radius: 999px;
+    border: 1px solid rgba(190, 160, 106, 0.22);
+    cursor: pointer;
+    transition: transform .35s var(--ease), box-shadow .35s var(--ease), background .35s var(--ease);
+  }
+  .partner-page .btn--primary {
+    background: linear-gradient(135deg, rgba(198, 165, 111, 0.98), rgba(138, 105, 52, 0.98));
+    color: #fffdf8;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    box-shadow: 0 14px 28px rgba(17, 13, 10, 0.12);
+  }
+  .partner-page .btn--ghost {
+    background: rgba(255, 255, 255, 0.94);
+    color: var(--ink);
+    font-size: 13px;
+    font-weight: 700;
+  }
+  .partner-page .btn:hover {
+    transform: translateY(-2px);
+  }
+  .partner-page .note {
+    margin-top: 16px;
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.8;
+    word-break: keep-all;
+  }
+
+  @media (max-width: 1080px) {
+    .partner-page .hero-inner,
+    .partner-page .content-wrap {
+      grid-template-columns: 1fr;
     }
-    .field input::placeholder, .field textarea::placeholder { color:var(--muted); }
-    .field input:focus, .field textarea:focus, .field select:focus { outline:none; border-color:var(--brown); }
-    .field textarea { min-height:148px; }
-    .contact-actions { display:flex; gap:12px; flex-wrap:wrap; margin-top:22px; }
-    .btn { display:inline-flex; align-items:center; justify-content:center; min-height:52px; padding:0 24px; background:var(--brown); color:#fff; font-weight:800; text-decoration:none; border:1px solid var(--brown); cursor:pointer; }
-    .btn--ghost { background:transparent; color:var(--ink); }
-    .contact-note { margin-top:14px; color:var(--muted); font-size:13px; line-height:1.7; }
-    .contact-success { margin:0 0 24px; padding:14px 16px; border:1px solid var(--line); background:#fff; color:var(--ink); font-size:14px; line-height:1.7; }
-    @media (max-width:720px){ .sub-inner{width:min(100% - 28px,980px);} .sub-hero{padding:112px 0 70px;} .sub-section{padding:72px 0;} .stats,.fields{grid-template-columns:1fr;} .contact-box{padding:30px;} }
-  </style>
-  <section class="sub-hero">
-    <div class="sub-inner">
-      <div class="sub-label">For Brands</div>
-      <h1 class="sub-title">제품만 준비하세요. 판매는 니드유가 만듭니다.</h1>
-      <p class="sub-copy">다양한 카테고리에서 검증된 운영 경험을 바탕으로 제품의 가치를 실제 매출로 연결합니다.</p>
+    .partner-page .hero-panel {
+      justify-self: start;
+    }
+    .partner-page .sales-panel {
+      position: static;
+      top: auto;
+    }
+  }
+  @media (max-width: 720px) {
+    .partner-page .nd-hero {
+      min-height: auto;
+    }
+    .partner-page .hero-inner {
+      padding-top: 164px;
+    }
+    .partner-page .sales-panel,
+    .partner-page .form-box {
+      padding: 26px;
+    }
+    .partner-page .fields {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<section class="nd-hero">
+  <div class="hero-inner">
+    <div class="hero-copy">
+      <div class="nd-kicker" data-reveal>For Brands</div>
+      <h1 class="nd-title" data-reveal data-reveal-delay="1">제품만 준비하세요.<br>판매의 장면은 니드유가 만듭니다</h1>
+      <p class="nd-copy" data-reveal data-reveal-delay="2">
+        브랜드에 맞는 셀러와 메시지를 찾고, 팔리는 구조와 일정까지 연결합니다.
+        공동구매를 한 번의 이벤트가 아니라 다음 성장으로 이어지는 채널로 만들고 싶다면
+        여기서 시작하시면 됩니다.
+      </p>
     </div>
-  </section>
-  <section class="sub-section">
-    <div class="sub-inner">
-      <div class="stats">
-        <div class="stat"><strong>300+</strong><span>누적 공동구매 프로젝트</span></div>
-        <div class="stat"><strong>XX억</strong><span>누적 매출 데이터 확인 후 반영</span></div>
-        <div class="stat"><strong>XX개</strong><span>협업 브랜드 수 확인 후 반영</span></div>
-      </div>
-      <div class="contact-box">
-        <h2>Partner Inquiry</h2>
-        <p>좋은 제품을 가지고 있지만 판매에 어려움을 겪고 계신가요? 지금, 니드유와 함께 새로운 기회를 만들어보세요.</p>
-        <div class="contact-success" id="partnerSuccess" style="display:none;">문의가 정상적으로 접수되었습니다. 확인 후 메일로 회신드리겠습니다.</div>
-        <form class="contact-form" id="partnerInquiryForm" action="https://formsubmit.co/dugustjr98@gmail.com" method="POST">
-          <input type="hidden" name="_subject" value="[니드유 업체 제휴 문의]" />
-          <input type="hidden" name="_template" value="table" />
-          <input type="hidden" name="_next" value="https://needyou09.com/layout/basic/partner.html?submitted=1" />
-          <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" />
-          <div class="fields">
-            <div class="field">
-              <label for="partnerCompany">업체명</label>
-              <input id="partnerCompany" name="company" type="text" placeholder="업체명을 입력해주세요" required />
-            </div>
-            <div class="field">
-              <label for="partnerManager">담당자명</label>
-              <input id="partnerManager" name="manager" type="text" placeholder="담당자명을 입력해주세요" required />
-            </div>
-            <div class="field">
-              <label for="partnerPhone">연락처</label>
-              <input id="partnerPhone" name="phone" type="text" placeholder="연락 가능한 번호를 입력해주세요" required />
-            </div>
-            <div class="field">
-              <label for="partnerEmail">이메일</label>
-              <input id="partnerEmail" name="email" type="email" placeholder="회신 받을 이메일을 입력해주세요" required />
-            </div>
-            <div class="field">
-              <label for="partnerProduct">제품명</label>
-              <input id="partnerProduct" name="product" type="text" placeholder="대표 제품명을 입력해주세요" required />
-            </div>
-            <div class="field">
-              <label for="partnerCategory">제품 카테고리</label>
-              <input id="partnerCategory" name="category" type="text" placeholder="예: 리빙, 뷰티, 식품" required />
-            </div>
-            <div class="field">
-              <label for="partnerSchedule">희망 진행 일정</label>
-              <input id="partnerSchedule" name="schedule" type="text" placeholder="예: 6월 말 오픈 희망" />
-            </div>
-            <div class="field">
-              <label for="partnerAttachment">첨부파일 여부</label>
-              <select id="partnerAttachment" name="attachment_notice">
-                <option value="없음">없음</option>
-                <option value="있음">있음</option>
-                <option value="추후 전달 예정">추후 전달 예정</option>
-              </select>
-            </div>
-            <div class="field field--full">
-              <label for="partnerMessage">제품 소개 또는 제안 내용</label>
-              <textarea id="partnerMessage" name="message" placeholder="제품 특징, 제안 배경, 운영 희망 방향 등을 입력해주세요" required></textarea>
-            </div>
-          </div>
-          <div class="contact-actions">
-            <button class="btn" type="submit">문의 접수하기</button>
-            <a class="btn btn--ghost" href="https://open.kakao.com/o/sfdCZ0dg" target="_blank" rel="noopener">카카오톡 빠른 문의</a>
-          </div>
-          <p class="contact-note">문의 접수 시 입력한 내용이 니드유 메일로 전달됩니다. 자료 첨부가 필요하면 카카오톡 또는 회신 메일로 추가 전달해주세요.</p>
-        </form>
-      </div>
+
+    <div class="hero-panel" data-reveal data-reveal-delay="3">
+      <strong>For Brand Team</strong>
+      <p>초기 제안, 재진행 상담, 셀러 매칭 검토까지 브랜드 상황에 맞는 흐름으로 안내합니다.</p>
     </div>
-  </section>
-  <script>
-    (function () {
-      if (window.location.search.indexOf('submitted=1') > -1) {
-        var success = document.getElementById('partnerSuccess');
-        if (success) success.style.display = 'block';
-      }
-    }());
-  </script>
+  </div>
+</section>
+
+<section class="nd-section">
+  <div class="content-wrap">
+    <aside class="sales-panel surface" data-reveal>
+      <div>
+        <div class="nd-eyebrow">Why Inquiry</div>
+        <h2>브랜드마다<br>필요한 판매 구조는 다릅니다</h2>
+      </div>
+      <p>
+        니드유는 동일한 방식으로 모든 브랜드를 진행하지 않습니다.
+        카테고리, 가격대, 타깃 소비자, 셀러 성향을 함께 보고 가장 적절한 공동구매 구조를 제안합니다.
+      </p>
+      <div class="value-list">
+        <article class="value-item">
+          <strong>브랜드 포지션 정리</strong>
+          <p>제품 자체보다 어떤 감도로 소비자에게 인식될지를 먼저 정리합니다.</p>
+        </article>
+        <article class="value-item">
+          <strong>셀러 및 채널 매칭</strong>
+          <p>인스타그램, 숏폼, 라이브 등 카테고리에 맞는 판매 장면을 설계합니다.</p>
+        </article>
+        <article class="value-item">
+          <strong>운영과 후속 기획</strong>
+          <p>일정, CS 포인트, 재진행 가능성까지 실무적으로 이어갑니다.</p>
+        </article>
+      </div>
+      <a class="quick-link" href="https://open.kakao.com/o/sfdCZ0dg" target="_blank" rel="noopener">Kakao Quick Talk</a>
+    </aside>
+
+    <div class="form-box surface" data-reveal data-reveal-delay="1">
+      <div class="form-head">
+        <div class="nd-eyebrow">Brand Inquiry</div>
+        <h3>업체 제휴문의</h3>
+        <p>
+          아래 내용을 남겨주시면 제품 특성과 희망 방향을 검토한 뒤 회신드립니다.
+          자료가 별도로 있다면 접수 후 카카오톡이나 메일로 추가 전달하셔도 됩니다.
+        </p>
+      </div>
+
+      <div class="success" id="partnerSuccess" style="display:none;">
+        문의가 정상적으로 접수되었습니다. 확인 후 순차적으로 답변드리겠습니다.
+      </div>
+
+      <form id="partnerInquiryForm" action="https://formsubmit.co/dugustjr98@gmail.com" method="POST">
+        <input type="hidden" name="_subject" value="[니드유 업체 제휴 문의]">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_next" value="https://needyou09.com/layout/basic/partner.html?submitted=1">
+        <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+
+        <div class="fields">
+          <div class="field">
+            <label for="partnerCompany">Company</label>
+            <input id="partnerCompany" name="company" type="text" placeholder="업체명 또는 브랜드명을 입력해 주세요" required>
+          </div>
+          <div class="field">
+            <label for="partnerManager">Manager</label>
+            <input id="partnerManager" name="manager" type="text" placeholder="담당자명을 입력해 주세요" required>
+          </div>
+          <div class="field">
+            <label for="partnerPhone">Phone</label>
+            <input id="partnerPhone" name="phone" type="text" placeholder="연락 가능한 번호를 입력해 주세요" required>
+          </div>
+          <div class="field">
+            <label for="partnerEmail">Email</label>
+            <input id="partnerEmail" name="email" type="email" placeholder="회신받을 이메일을 입력해 주세요" required>
+          </div>
+          <div class="field">
+            <label for="partnerProduct">Product</label>
+            <input id="partnerProduct" name="product" type="text" placeholder="주력 제품명을 입력해 주세요" required>
+          </div>
+          <div class="field">
+            <label for="partnerCategory">Category</label>
+            <input id="partnerCategory" name="category" type="text" placeholder="예: 리빙, 패브릭, 뷰티" required>
+          </div>
+          <div class="field">
+            <label for="partnerSchedule">Schedule</label>
+            <input id="partnerSchedule" name="schedule" type="text" placeholder="희망 진행 시기가 있다면 적어 주세요">
+          </div>
+          <div class="field">
+            <label for="partnerAttachment">Attachment</label>
+            <select id="partnerAttachment" name="attachment_notice">
+              <option value="별도 없음">별도 없음</option>
+              <option value="추가 전달 예정">추가 전달 예정</option>
+              <option value="이미 준비됨">이미 준비됨</option>
+            </select>
+          </div>
+          <div class="field field--full">
+            <label for="partnerMessage">Message</label>
+            <textarea id="partnerMessage" name="message" placeholder="제품 특징, 희망 방향, 참고하고 싶은 셀러 또는 진행 방식 등을 적어 주세요" required></textarea>
+          </div>
+        </div>
+
+        <div class="actions">
+          <button class="btn btn--primary" type="submit">Send Inquiry</button>
+          <a class="btn btn--ghost" href="https://open.kakao.com/o/sfdCZ0dg" target="_blank" rel="noopener">카카오톡 빠른 문의</a>
+        </div>
+        <p class="note">
+          문의 접수 시 입력한 내용은 니드유 메일로 전달됩니다. 추가 자료가 있다면 회신 메일 또는 카카오톡으로 보내주셔도 됩니다.
+        </p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<script>
+  (function () {
+    if (window.location.search.indexOf('submitted=1') > -1) {
+      var message = document.getElementById('partnerSuccess');
+      if (message) message.style.display = 'block';
+    }
+  }());
+</script>
 </div>
