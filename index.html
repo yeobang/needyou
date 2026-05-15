@@ -1,4 +1,4 @@
-<!--@layout(/layout/basic/main.html)-->
+<!--@layout(/layout/basic/layout.html)-->
 <style>
   /* ═══════════════════════════════════════════════
      HOME PAGE — Premium Showroom
@@ -65,7 +65,11 @@
     font-size: clamp(15px, 1.3vw, 18px);
     line-height: 1.85; color: rgba(247,238,219,.78); word-break: keep-all;
   }
-  .home-hero__sub strong { color: var(--gold-champ); font-weight: 500; }
+  .home-hero__sub strong {
+    color: var(--gold-champ);
+    font-weight: 600;
+    letter-spacing: -.01em;
+  }
   .home-hero__foot {
     align-self: end;
     display: grid; grid-template-columns: 1fr auto;
